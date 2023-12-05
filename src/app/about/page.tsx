@@ -13,15 +13,26 @@ import {
 import portraitImage from '@/images/portrait.jpeg'
 
 function SocialLink({
+  className,
+  href,
+  children,
   icon: Icon,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof Link> & {
+}: {
+  className?: string
+  href: string
   icon: React.ComponentType<{ className?: string }>
+  children: React.ReactNode
 }) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </Link>
+    <li className={clsx(className, 'flex')}>
+      <Link
+        href={href}
+        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+      >
+        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+        <span className="ml-4">{children}</span>
+      </Link>
+    </li>
   )
 }
 
@@ -102,22 +113,25 @@ export default function About() {
                 href="https://twitter.com/hitch_hike_engg"
                 aria-label="Follow on Twitter"
                 icon={TwitterIcon}
-
+                children = ''
               />
               <SocialLink
                 href="https://instagram.com/hitch_hike_engg"
                 aria-label="Follow on Instagram"
                 icon={InstagramIcon}
+                children = ''
               />
               <SocialLink
                 href="https://github.com/arjun9"
                 aria-label="Follow on GitHub"
                 icon={GitHubIcon}
+                children = ''
               />
               <SocialLink
                 href="https://www.linkedin.com/in/arjun-verma-895133103/"
                 aria-label="Follow on LinkedIn"
                 icon={LinkedInIcon}
+                children = ''
               />
             </div>
             <SocialLink
