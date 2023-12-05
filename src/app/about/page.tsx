@@ -69,7 +69,7 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            I’m Arjun Verma. I live in India, where I design for the
+            I’m Arjun Verma. I live in India, where I build for the
             future.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
@@ -103,16 +103,16 @@ export default function About() {
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="#" icon={TwitterIcon}>
+            <SocialLink href="https://twitter.com/hitch_hike_engg" icon={TwitterIcon}>
               Follow on Twitter
             </SocialLink>
-            <SocialLink href="#" icon={InstagramIcon} className="mt-4">
+            <SocialLink href="https://instagram.com/hitch_hike_engg" icon={InstagramIcon} className="mt-4">
               Follow on Instagram
             </SocialLink>
-            <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+            <SocialLink href="https://github.com/arjun9" icon={GitHubIcon} className="mt-4">
               Follow on GitHub
             </SocialLink>
-            <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+            <SocialLink href="https://www.linkedin.com/in/arjun-verma-895133103/" icon={LinkedInIcon} className="mt-4">
               Follow on LinkedIn
             </SocialLink>
             <SocialLink

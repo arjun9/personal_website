@@ -14,9 +14,9 @@ import {
 import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoPayu from '@/images/logos/payu.png'
+import logoPayu from '@/images/logos/payu_logo.png'
 import logoUrbanCompany from '@/images/logos/uc_logo.jpg'
-import logoHetuLabs from '@/images/logos/hetu_logo.png'
+import logoHetuLabs from '@/images/logos/hetu_formatted.png'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -161,8 +161,8 @@ function Role({ role }: { role: Role }) {
 
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="w-6" unoptimized />
+      <div className="relative mt-1 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+        <Image src={role.logo} alt="" unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
