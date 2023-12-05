@@ -6,6 +6,7 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import logoCacheNinja from '@/images/logos/cache_ninja.png'
 import logoEjabberdClient from '@/images/logos/ejabberd_client.png'
 import logoSimpleProxy from '@/images/logos/simple_proxy.png'
+import logoGPT from '@/images/logos/custom_gpt.png'
 
 
 const projects = [
@@ -31,11 +32,11 @@ const projects = [
     logo: logoSimpleProxy,
   },
   {
-    name: 'Paul Graham’s Essays',
+    name: 'GPT: Paul Graham’s Essays',
     description:
-      'This gem boosts developer productivity by tackling CORS restrictions, smoothing out the software development lifecycle, and speeding up processes for greater efficiency.',
-    link: { href: 'https://github.com/Hetu-Labs/simple_proxy', label: 'github.com' },
-    logo: logoSimpleProxy,
+      'This is a custom-gpt model trained on Paul Graham’s essays. It’s a fun way to interact with his essays and get a glimpse into the mind of a great thinker.',
+    link: { href: 'https://chat.openai.com/g/g-SwyIhlIms-paul-graham-s-essays', label: 'chat.openai.com' },
+    logo: logoGPT,
   }
 ]
 
