@@ -3,48 +3,33 @@ import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
-import logoCosmos from '@/images/logos/cosmos.svg'
-import logoHelioStream from '@/images/logos/helio-stream.svg'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
+import logoCacheNinja from '@/images/logos/cache_ninja.png'
+import logoEjabberdClient from '@/images/logos/ejabberd_client.png'
+import logoSimpleProxy from '@/images/logos/simple_proxy.png'
+
 
 const projects = [
   {
-    name: 'Planetaria',
+    name: 'Cache Ninja',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    link: { href: 'http://planetaria.tech', label: 'planetaria.tech' },
-    logo: logoPlanetaria,
+      'In Ruby on Rails, association caching is tricky, but Cache Ninja turns it into a powerful tool, enabling users to redefine their experience.',
+    link: { href: 'https://github.com/arjun9/cache_ninja', label: 'github.com' },
+    logo: logoCacheNinja,
   },
   {
-    name: 'Animaginary',
+    name: 'Ejabberd Client',
     description:
-      'High performance web animation library, hand-written in optimized WASM.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoAnimaginary,
+      'The Ejabberd HTTP Client gem streamlines Ruby-based communication with Ejabberd XMPP servers, making it easier and more efficient',
+    link: { href: 'https://github.com/arjun9/ejabberd_http_client', label: 'github.com' },
+    logo: logoEjabberdClient,
   },
   {
-    name: 'HelioStream',
+    name: 'Simple Proxy',
     description:
-      'Real-time video streaming library, optimized for interstellar transmission.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoHelioStream,
-  },
-  {
-    name: 'cosmOS',
-    description:
-      'The operating system that powers our Planetaria space shuttles.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoCosmos,
-  },
-  {
-    name: 'OpenShuttle',
-    description:
-      'The schematics for the first rocket I designed that successfully made it to orbit.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoOpenShuttle,
-  },
+      'This gem boosts developer productivity by tackling CORS restrictions, smoothing out the software development lifecycle, and speeding up processes for greater efficiency.',
+    link: { href: 'https://github.com/Hetu-Labs/simple_proxy', label: 'github.com' },
+    logo: logoSimpleProxy,
+  }
 ]
 
 function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -67,7 +52,7 @@ export default function Projects() {
   return (
     <SimpleLayout
       title="Things I’ve made trying to put my dent in the universe."
-      intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+      intro="I've worked on numerous small projects over the years, but only recently have I made some of them open source. If something piques your interest, feel free to check out the code and contribute your ideas for improvements."
     >
       <ul
         role="list"
@@ -75,11 +60,10 @@ export default function Projects() {
       >
         {projects.map((project) => (
           <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <div className="relative z-10 flex h-32 w-32 overflow-hidden items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <Image
                 src={project.logo}
                 alt=""
-                className="h-8 w-8"
                 unoptimized
               />
             </div>

@@ -229,7 +229,7 @@ function Resume() {
           <Role key={roleIndex} role={role}/>
         ))}
       </ol>
-      <a href="https://drive.google.com/file/d/1qqay1y6blL1VcalIm4eFF0GtPabEXE0f/view" target='_blank'>
+      <a href="https://drive.google.com/file/d/1g6tmDHD2ajPAVMsglITupcWyFAFt5Uw5/view?usp=sharing" target='_blank'>
         <Button  variant="secondary" className="group mt-6 w-full">
           Download CV
           <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
@@ -278,11 +278,19 @@ export default async function Home() {
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I’m Arjun, a software engineer and entrepreneur based in Gurgaon, India.
-            I’m the Co-founder and CTO of <a href="https://www.hetu-labs.com/" className="font-medium text-black underline decoration-teal-500">Hetu Labs</a>, where we develop technologies that
+            I’m the Co-founder and CTO of <a href="https://www.hetu-labs.com/" className="font-semibold underline decoration-teal-500">Hetu Labs</a>, where we develop technologies that
             empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions.
+            Occasionaly, i also work as a freelance software consultant. If you're interested in working with me,feel free to &nbsp;
+            <a href="https://calendly.com/arjun-verma-in/30min" className="font-semibold underline decoration-teal-500" target="_blank">
+              reach out
+            </a>.
           </p>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          🔥 Our goal is to <a href="https://hbr.org/2005/06/the-coming-commoditization-of-processes" className="text-black underline decoration-teal-500">commoditize the software development process by providing a no-code platform </a> for SMBs to build their own software solutions.
+            🔥  In light of AI's advancement, I hope to witness a future where &nbsp;
+            <a href="https://hbr.org/2005/06/the-coming-commoditization-of-processes" className="font-medium underline decoration-blue-500" target="_blank">
+               software development is commoditized and democratized for everyone
+            </a>,
+            and I aim to be an integral part of this change.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
