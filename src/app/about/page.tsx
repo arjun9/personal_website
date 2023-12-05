@@ -10,7 +10,7 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
+import portraitImage from '@/images/portrait.jpeg'
 
 function SocialLink({
   className,
@@ -63,7 +63,7 @@ export default function About() {
               src={portraitImage}
               alt=""
               sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+              className="rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
             />
           </div>
         </div>
@@ -108,18 +108,28 @@ export default function About() {
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="https://twitter.com/hitch_hike_engg" icon={TwitterIcon}>
-              Follow on Twitter
-            </SocialLink>
-            <SocialLink href="https://instagram.com/hitch_hike_engg" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink>
-            <SocialLink href="https://github.com/arjun9" icon={GitHubIcon} className="mt-4">
-              Follow on GitHub
-            </SocialLink>
-            <SocialLink href="https://www.linkedin.com/in/arjun-verma-895133103/" icon={LinkedInIcon} className="mt-4">
-              Follow on LinkedIn
-            </SocialLink>
+            <div className="flex gap-6">
+              <SocialLink
+                href="https://twitter.com/hitch_hike_engg"
+                aria-label="Follow on Twitter"
+                icon={TwitterIcon}
+              />
+              <SocialLink
+                href="https://instagram.com/hitch_hike_engg"
+                aria-label="Follow on Instagram"
+                icon={InstagramIcon}
+              />
+              <SocialLink
+                href="https://github.com/arjun9"
+                aria-label="Follow on GitHub"
+                icon={GitHubIcon}
+              />
+              <SocialLink
+                href="https://www.linkedin.com/in/arjun-verma-895133103/"
+                aria-label="Follow on LinkedIn"
+                icon={LinkedInIcon}
+              />
+            </div>
             <SocialLink
               href="mailto:arjun.verma8412@gmail.com"
               icon={MailIcon}
