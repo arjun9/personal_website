@@ -6,36 +6,24 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import logoCacheNinja from '@/images/logos/cache_ninja.png'
 import logoEjabberdClient from '@/images/logos/ejabberd_client.png'
 import logoSimpleProxy from '@/images/logos/simple_proxy.png'
+import logoHetuLabs from '@/images/logos/hetu_formatted.png'
+import logoSCM from '@/images/logos/scm_logo.png'
 
 
 const projects = [
   {
-    name: 'Cache Ninja',
+    name: 'Hetu Labs',
     description:
-      'In Ruby on Rails, association caching is tricky, but Cache Ninja turns it into a powerful tool, enabling users to redefine their experience.',
-    link: { href: 'https://github.com/arjun9/cache_ninja', label: 'github.com' },
-    logo: logoCacheNinja,
+      'A technology company dedicated to empowering small and medium-sized businesses (SMBs) by scaling their revenue through customized software solutions.',
+    link: { href: 'https://www.hetu-labs.com', label: 'hetu-labs.com' },
+    logo: logoHetuLabs,
   },
   {
-    name: 'Ejabberd Client',
+    name: 'SimpleChain SCM',
     description:
-      'The Ejabberd HTTP Client gem streamlines Ruby-based communication with Ejabberd XMPP servers, making it easier and more efficient',
-    link: { href: 'https://github.com/arjun9/ejabberd_http_client', label: 'github.com' },
-    logo: logoEjabberdClient,
-  },
-  {
-    name: 'Simple Proxy',
-    description:
-      'This gem boosts developer productivity by tackling CORS restrictions, smoothing out the software development lifecycle, and speeding up processes for greater efficiency.',
-    link: { href: 'https://github.com/Hetu-Labs/simple_proxy', label: 'github.com' },
-    logo: logoSimpleProxy,
-  },
-  {
-    name: 'Paul Graham’s Essays',
-    description:
-      'This gem boosts developer productivity by tackling CORS restrictions, smoothing out the software development lifecycle, and speeding up processes for greater efficiency.',
-    link: { href: 'https://github.com/Hetu-Labs/simple_proxy', label: 'github.com' },
-    logo: logoSimpleProxy,
+      'Highly agile supply chain task tracking and management software, easily customizable to suit any industry. It streamlines operations and improves efficiency for businesses of all sizes.',
+    link: { href: 'https://www.hetu-labs.com', label: 'simple-chain.com' },
+    logo: logoSCM,
   }
 ]
 
@@ -52,14 +40,14 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Things I’ve made trying to give back to the community',
+  description: 'Things I’ve made trying to put my dent in the universe.',
 }
 
-export default function Projects() {
+export default function Products() {
   return (
     <SimpleLayout
-      title="Things I’ve made trying to give back to the community"
-      intro="I've worked on numerous small projects over the years, but only recently have I made some of them open source. If something piques your interest, feel free to check out the code and contribute your ideas for improvements."
+      title="Things I’ve made trying to put my dent in the universe."
+      intro="I’ve loved making things for as long as I can remember, and I’ve been lucky enough to be able to make a living doing it. Here are some of the companies/products I’ve created over the years"
     >
       <ul
         role="list"

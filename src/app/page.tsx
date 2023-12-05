@@ -280,7 +280,7 @@ export default async function Home() {
             I’m Arjun, a software engineer and entrepreneur based in Gurgaon, India.
             I’m the Co-founder and CTO of <a href="https://www.hetu-labs.com/" className="font-semibold underline decoration-teal-500">Hetu Labs</a>, where we develop technologies that
             empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions.
-            Occasionaly, i also work as a freelance software consultant. If you're interested in working with me,feel free to &nbsp;
+            Occasionaly, i also work as a freelance software consultant. If you're interested in working with me, feel free to &nbsp;
             <a href="https://calendly.com/arjun-verma-in/30min" className="font-semibold underline decoration-teal-500" target="_blank">
               reach out
             </a>.
