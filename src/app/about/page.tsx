@@ -74,30 +74,35 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I’ve loved making things for as long as I can remember, and wrote
-              my first program when I was 6 years old, just two weeks after my
-              mom brought home the brand new Macintosh LC 550 that I taught
-              myself to type on.
+              I’ve loved making things for as long as I can remember.
+              I wrote my first program when I was 8 years old,
+              creating all sorts of shapes and patterns in&nbsp;
+              <a href="https://en.wikipedia.org/wiki/Logo_(programming_language)" className="font-semibold underline decoration-teal-500">
+                Logo
+              </a> on my mom's old Compaq Deskpro.
+              It was more than a pastime; it was a portal to a world of endless possibilities.
             </p>
             <p>
-              The only thing I loved more than computers as a kid was space.
-              When I was 8, I climbed the 40-foot oak tree at the back of our
-              yard while wearing my older sister’s motorcycle helmet, counted
-              down from three, and jumped — hoping the tree was tall enough that
-              with just a bit of momentum I’d be able to get to orbit.
+              My journey wasn't initially steered towards entrepreneurship.
+              I guess the seed of entrepreneurship was planted in my mind,
+              at the age of 15, while watching &nbsp;
+              <a href="https://en.wikipedia.org/wiki/Pirates_of_Silicon_Valley" className="font-semibold underline decoration-teal-500">
+                Pirates of Silicon Valley
+              </a> &&nbsp;
+              <a href="https://en.wikipedia.org/wiki/Triumph_of_the_Nerds" className="font-semibold underline decoration-teal-500">
+                Triumph of the Nerds
+              </a>, at a friend's house.
+              The inspiring stories of simple hackers transforming
+              the world with nothing but a laptop had a profound impact on me.
             </p>
             <p>
-              I spent the next few summers indoors working on a rocket design,
-              while I recovered from the multiple surgeries it took to fix my
-              badly broken legs. It took nine iterations, but when I was 15 I
-              sent my dad’s Blackberry into orbit and was able to transmit a
-              photo back down to our family computer from space.
-            </p>
-            <p>
-              Today, I’m the founder of Planetaria, where we’re working on
-              civilian space suits and manned shuttle kits you can assemble at
-              home so that the next generation of kids really <em>can</em> make
-              it to orbit — from the comfort of their own backyards.
+            Today, I live in Gurgaon with my dogo, &nbsp;
+            <a href="https://instagram.com/thegoldenboy_greg" className="font-semibold underline decoration-teal-500">
+              Greg
+            </a>, and Garima, (my girlfriend of seven years who has now become my wife).
+            I'm still pursuing my lifelong dream:&nbsp;
+            <span className="font-semibold underline decoration-blue-500">to create value that transcends the ordinary</span>. And with every step,
+            I continue to carry the spirit of that 8-year-old who saw a world of possibilities in every pixel and line of code.
             </p>
           </div>
         </div>
