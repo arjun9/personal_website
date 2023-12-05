@@ -13,26 +13,15 @@ import {
 import portraitImage from '@/images/portrait.jpeg'
 
 function SocialLink({
-  className,
-  href,
-  children,
   icon: Icon,
-}: {
-  className?: string
-  href: string
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Link> & {
   icon: React.ComponentType<{ className?: string }>
-  children: React.ReactNode
 }) {
   return (
-    <li className={clsx(className, 'flex')}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
-      >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
+    <Link className="group -m-1 p-1" {...props}>
+      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+    </Link>
   )
 }
 
@@ -79,11 +68,11 @@ export default function About() {
               creating all sorts of shapes and patterns in&nbsp;
               <a href="https://en.wikipedia.org/wiki/Logo_(programming_language)" className="font-semibold underline decoration-teal-500">
                 Logo
-              </a> on my mom's old Compaq Deskpro.
+              </a> on my mom’s old Compaq Deskpro.
               It was more than a pastime; it was a portal to a world of endless possibilities.
             </p>
             <p>
-              My journey wasn't initially steered towards entrepreneurship.
+              My journey wasn’t initially steered towards entrepreneurship.
               I guess the seed of entrepreneurship was planted in my mind,
               at the age of 15, while watching &nbsp;
               <a href="https://en.wikipedia.org/wiki/Pirates_of_Silicon_Valley" className="font-semibold underline decoration-teal-500">
@@ -91,7 +80,7 @@ export default function About() {
               </a> &&nbsp;
               <a href="https://en.wikipedia.org/wiki/Triumph_of_the_Nerds" className="font-semibold underline decoration-teal-500">
                 Triumph of the Nerds
-              </a>, at a friend's house.
+              </a>, at a friend’s house.
               The inspiring stories of simple hackers transforming
               the world with nothing but a laptop had a profound impact on me.
             </p>
@@ -100,7 +89,7 @@ export default function About() {
             <a href="https://instagram.com/thegoldenboy_greg" className="font-semibold underline decoration-teal-500">
               Greg
             </a>, and Garima, (my partner of seven years who has now become my wife).
-            I'm still pursuing my lifelong dream:&nbsp;
+            I’m still pursuing my lifelong dream:&nbsp;
             <span className="font-semibold underline decoration-blue-500">to create value that transcends the ordinary</span>. And with every step,
             I continue to carry the spirit of that 8-year-old who saw a world of possibilities in every pixel and line of code.
             </p>
@@ -113,6 +102,7 @@ export default function About() {
                 href="https://twitter.com/hitch_hike_engg"
                 aria-label="Follow on Twitter"
                 icon={TwitterIcon}
+
               />
               <SocialLink
                 href="https://instagram.com/hitch_hike_engg"
