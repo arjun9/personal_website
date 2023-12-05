@@ -113,26 +113,22 @@ export default function About() {
                 href="https://twitter.com/hitch_hike_engg"
                 aria-label="Follow on Twitter"
                 icon={TwitterIcon}
-                children = ''
-              />
+              > </SocialLink>
               <SocialLink
                 href="https://instagram.com/hitch_hike_engg"
                 aria-label="Follow on Instagram"
                 icon={InstagramIcon}
-                children = ''
-              />
+              > </SocialLink>
               <SocialLink
                 href="https://github.com/arjun9"
                 aria-label="Follow on GitHub"
                 icon={GitHubIcon}
-                children = ''
-              />
+              >  </SocialLink>
               <SocialLink
                 href="https://www.linkedin.com/in/arjun-verma-895133103/"
                 aria-label="Follow on LinkedIn"
                 icon={LinkedInIcon}
-                children = ''
-              />
+              >  </SocialLink>
             </div>
             <SocialLink
               href="mailto:arjun.verma8412@gmail.com"
