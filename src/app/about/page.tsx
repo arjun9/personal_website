@@ -99,7 +99,7 @@ export default function About() {
             Today, I live in Gurgaon with my dogo, &nbsp;
             <a href="https://instagram.com/thegoldenboy_greg" className="font-semibold underline decoration-teal-500">
               Greg
-            </a>, and Garima, (my girlfriend of seven years who has now become my wife).
+            </a>, and Garima, (my partner of seven years who has now become my wife).
             I'm still pursuing my lifelong dream:&nbsp;
             <span className="font-semibold underline decoration-blue-500">to create value that transcends the ordinary</span>. And with every step,
             I continue to carry the spirit of that 8-year-old who saw a world of possibilities in every pixel and line of code.

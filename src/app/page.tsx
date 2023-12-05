@@ -17,11 +17,11 @@ import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoPayu from '@/images/logos/payu_logo.png'
 import logoUrbanCompany from '@/images/logos/uc_logo.jpg'
 import logoHetuLabs from '@/images/logos/hetu_formatted.png'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
+import image1 from '@/images/photos/photo_3.jpeg'
+import image2 from '@/images/photos/photo_1.jpeg'
+import image3 from '@/images/photos/photo_2.jpeg'
+import image4 from '@/images/portrait.jpeg'
+import image5 from '@/images/photos/photo_4.jpeg'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
 
@@ -272,7 +272,7 @@ export default async function Home() {
   return (
     <>
       <Container className="mt-9">
-        <div className="max-w-2xl">
+        <div className="max-w-4xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             Software engineer, founder, and amateur philosopher.
           </h1>
@@ -317,7 +317,7 @@ export default async function Home() {
         </div>
       </Container>
       <Photos />
-      <Container className="mt-24 md:mt-28">
+      <Container className="mt-20 md:mt-24">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
             {articles.map((article) => (
@@ -325,8 +325,8 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
             <Resume />
+            <Newsletter />
           </div>
         </div>
       </Container>
