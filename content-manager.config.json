@@ -1,0 +1,139 @@
+{
+  "files": {
+    "./src/app/about/page.tsx": {
+      "path": "./src/app/about/page.tsx",
+      "elements": {
+        "h1.title": {
+          "selector": "h1",
+          "type": "string"
+        },
+        "p.bio": {
+          "selector": "p",
+          "type": "string[]"
+        },
+        "metadata.title": {
+          "selector": "export const metadata",
+          "type": "string"
+        },
+        "metadata.description": {
+          "selector": "export const metadata",
+          "type": "string"
+        }
+      }
+    },
+    "./src/app/articles/page.tsx": {
+      "path": "./src/app/articles/page.tsx",
+      "elements": {
+        "metadata.title": {
+          "selector": "export const metadata",
+          "type": "string"
+        },
+        "metadata.description": {
+          "selector": "export const metadata",
+          "type": "string"
+        },
+        "SimpleLayout.title": {
+          "selector": "SimpleLayout title",
+          "type": "string"
+        },
+        "SimpleLayout.intro": {
+          "selector": "SimpleLayout intro",
+          "type": "string"
+        }
+      }
+    },
+    "./src/app/articles/dawn-of-custom-gpt/page.mdx": {
+      "path": "./src/app/articles/dawn-of-custom-gpt/page.mdx",
+      "elements": {
+        "article.author": {
+          "selector": "export const article",
+          "type": "string"
+        },
+        "article.date": {
+          "selector": "export const article",
+          "type": "string"
+        },
+        "article.title": {
+          "selector": "export const article",
+          "type": "string"
+        },
+        "article.description": {
+          "selector": "export const article",
+          "type": "string"
+        },
+        "h2": {
+          "selector": "h2",
+          "type": "string[]"
+        },
+        "p": {
+          "selector": "p",
+          "type": "string[]"
+        }
+      }
+    },
+    "./src/app/products/page.tsx": {
+      "path": "./src/app/products/page.tsx",
+      "elements": {
+        "metadata.title": {
+          "selector": "export const metadata",
+          "type": "string"
+        },
+        "metadata.description": {
+          "selector": "export const metadata",
+          "type": "string"
+        },
+        "SimpleLayout.title": {
+          "selector": "SimpleLayout title",
+          "type": "string"
+        },
+        "SimpleLayout.intro": {
+          "selector": "SimpleLayout intro",
+          "type": "string"
+        },
+        "projects": {
+          "selector": "const projects",
+          "type": "string[]"
+        }
+      }
+    },
+    "./src/app/projects/page.tsx": {
+      "path": "./src/app/projects/page.tsx",
+      "elements": {
+        "metadata.title": {
+          "selector": "export const metadata",
+          "type": "string"
+        },
+        "metadata.description": {
+          "selector": "export const metadata",
+          "type": "string"
+        },
+        "SimpleLayout.title": {
+          "selector": "SimpleLayout title",
+          "type": "string"
+        },
+        "SimpleLayout.intro": {
+          "selector": "SimpleLayout intro",
+          "type": "string"
+        },
+        "projects": {
+          "selector": "const projects",
+          "type": "string[]"
+        }
+      }
+    }
+  },
+  "resources": [
+    {
+      "name": "articles",
+      "path": "./src/app/articles",
+      "allowedExtensions": ["tsx", "mdx"]
+    },
+    {
+      "name": "pages",
+      "path": "./src/app",
+      "allowedExtensions": ["tsx", "ts", "jsx", "js"]
+    }
+  ],
+  "projectType": "nextjs",
+  "rootDir": "."
+}
