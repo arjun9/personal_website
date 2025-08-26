@@ -247,10 +247,14 @@ export default config({
           label: 'Main Heading',
           defaultValue: 'Software engineer, founder, and amateur philosopher.'
         }),
-        intro: fields.text({ 
+        intro: fields.markdoc({ 
           label: 'Introduction Paragraph',
-          multiline: true,
-          defaultValue: "I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India. I'm the Co-founder and CTO of Hetu Labs, where we develop technologies that empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions. Occasionaly, i also work as a freelance software consultant."
+          options: {
+            image: {
+              directory: 'public/images',
+              publicPath: '/images/',
+            },
+          }
         }),
         hetuLabsUrl: fields.url({ 
           label: 'Hetu Labs URL',

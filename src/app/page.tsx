@@ -1,3 +1,4 @@
+import React from 'react'
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -14,6 +15,7 @@ import {
 // These are now loaded from Keystatic content
 import { type ArticleWithSlug, getAllArticles, getHomePageContent } from '@/lib/keystatic'
 import { formatDate } from '@/lib/formatDate'
+import Markdoc from '@markdoc/markdoc'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -144,7 +146,7 @@ interface HomePageContent {
   title: string | null;
   description: string | null;
   mainHeading: string | null;
-  intro: string | null;
+  intro: (() => Promise<any>) | null;
   hetuLabsUrl: string | null;
   calendlyUrl: string | null;
   visionStatement: string | null;
@@ -302,6 +304,23 @@ export default async function Home() {
     throw new Error('Home page content not found')
   }
 
+  // Render intro content if it exists
+  let introContent = null
+  if (homeContent.intro) {
+    try {
+      const { node } = await homeContent.intro()
+      const errors = Markdoc.validate(node)
+      if (errors.length) {
+        console.error('Markdoc validation errors:', errors)
+      }
+      const renderable = Markdoc.transform(node)
+      introContent = Markdoc.renderers.react(renderable, React)
+    } catch (error) {
+      console.error('Error rendering intro content:', error)
+      introContent = "I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India."
+    }
+  }
+
   const getIconForPlatform = (platform: string) => {
     switch (platform) {
       case 'twitter': return TwitterIcon
@@ -319,15 +338,19 @@ export default async function Home() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             {homeContent.mainHeading || 'Software engineer, founder, and amateur philosopher.'}
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            {homeContent.intro?.split('. ').slice(0, -1).join('. ') || "I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India"}.
-            {' '}I'm the Co-founder and CTO of <a href={homeContent.hetuLabsUrl || 'https://www.hetu-labs.com/'} className="font-semibold underline decoration-green-500">Hetu Labs</a>, where we develop technologies that
-            empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions.
-            Occasionaly, i also work as a freelance software consultant. If you're interested in working with me, feel free to&nbsp;
-            <a href={homeContent.calendlyUrl || 'https://calendly.com/arjun-verma-in/30min'} className="font-semibold underline decoration-green-500" target="_blank">
-              reach out
-            </a>.
-          </p>
+          <div className="mt-6 text-base text-zinc-600 dark:text-zinc-400 prose prose-zinc dark:prose-invert">
+            {introContent || (
+              <>
+                I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India.
+                I'm the Co-founder and CTO of <a href={homeContent.hetuLabsUrl || 'https://www.hetu-labs.com/'} className="font-semibold underline decoration-green-500">Hetu Labs</a>, where we develop technologies that
+                empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions.
+                Occasionaly, i also work as a freelance software consultant. If you're interested in working with me, feel free to&nbsp;
+                <a href={homeContent.calendlyUrl || 'https://calendly.com/arjun-verma-in/30min'} className="font-semibold underline decoration-green-500" target="_blank">
+                  reach out
+                </a>.
+              </>
+            )}
+          </div>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             {homeContent.visionStatement?.split('where')[0] || '🔥 In light of AI\'s advancement, I hope to witness a future '}where &nbsp;
             <a href={homeContent.visionLinkUrl || 'https://hbr.org/2005/06/the-coming-commoditization-of-processes'} className="font-medium underline decoration-blue-500" target="_blank">
