@@ -6,6 +6,7 @@ import Markdoc from '@markdoc/markdoc'
 import React from 'react'
 
 import { Container } from '@/components/Container'
+import { Prose } from '@/components/Prose'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -111,9 +112,9 @@ export default async function About() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             {aboutContent.subtitle}
           </h1>
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <Prose className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400 prose prose-zinc dark:prose-invert">
             {Markdoc.renderers.react(renderable, React)}
-          </div>
+          </Prose>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
