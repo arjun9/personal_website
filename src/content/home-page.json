@@ -12,6 +12,11 @@
       "platform": "github",
       "url": "https://github.com/arjun9",
       "ariaLabel": "Follow on Github"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/arjun-verma-895133103/",
+      "ariaLabel": "Follow on LinkedIn"
     }
   ],
   "workExperience": [
@@ -22,6 +27,22 @@
       "logo": "/images/logos/workExperience/0/logo.png",
       "startDate": "2023",
       "endDate": "Present"
+    },
+    {
+      "company": "Urban Company",
+      "title": "Lead Comms Platform",
+      "url": "https://www.linkedin.com/company/urbancompany/mycompany/",
+      "logo": "/images/logos/workExperience/1/logo.jpg",
+      "startDate": "2022",
+      "endDate": "2023"
+    },
+    {
+      "company": "PayU Payments",
+      "title": "Lead R&D Platform",
+      "url": "https://www.linkedin.com/company/payu/",
+      "logo": "/images/logos/workExperience/2/logo.png",
+      "startDate": "2016",
+      "endDate": "2022"
     }
   ],
   "resumeUrl": "https://drive.google.com/file/d/1g6tmDHD2ajPAVMsglITupcWyFAFt5Uw5/view?usp=sharing",
@@ -30,6 +51,8 @@
   "photos": [
     "/images/photos/photos/0.jpg",
     "/images/photos/photos/1.webp",
-    "/images/photos/photos/2.webp"
+    "/images/photos/photos/2.gif",
+    "/images/photos/photos/3.png",
+    "/images/photos/photos/4.png"
   ]
 }
