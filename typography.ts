@@ -107,7 +107,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
 
         // Inline elements
         a: {
-          color: 'var(--tw-prose-links)',
+          color: 'var(--tw-prose-body)',
           fontWeight: theme('fontWeight.semibold'),
           textDecoration: 'underline',
           textDecorationColor: 'var(--tw-prose-underline)',
