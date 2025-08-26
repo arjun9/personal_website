@@ -131,7 +131,7 @@ function Newsletter() {
           placeholder="Email address"
           aria-label="Email address"
           required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-green-500 focus:outline-none focus:ring-4 focus:ring-green-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-green-400 dark:focus:ring-green-400/10 sm:text-sm"
         />
         <Button type="submit" className="ml-4 flex-none">
           Join
@@ -278,10 +278,10 @@ export default async function Home() {
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I’m Arjun, a software engineer and entrepreneur based in Gurgaon, India.
-            I’m the Co-founder and CTO of <a href="https://www.hetu-labs.com/" className="font-semibold underline decoration-teal-500">Hetu Labs</a>, where we develop technologies that
+            I'm the Co-founder and CTO of <a href="https://www.hetu-labs.com/" className="font-semibold underline decoration-green-500">Hetu Labs</a>, where we develop technologies that
             empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions.
             Occasionaly, i also work as a freelance software consultant. If you’re interested in working with me, feel free to&nbsp;
-            <a href="https://calendly.com/arjun-verma-in/30min" className="font-semibold underline decoration-teal-500" target="_blank">
+            <a href="https://calendly.com/arjun-verma-in/30min" className="font-semibold underline decoration-green-500" target="_blank">
               reach out
             </a>.
           </p>
