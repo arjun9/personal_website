@@ -9,7 +9,14 @@ import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+
 const avatarImage = '/images/avatar.png'
+
+export interface NavigationItem {
+  label: string
+  href: string
+  order: number
+}
 
 function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -88,9 +95,12 @@ function MobileNavItem({
   )
 }
 
-function MobileNavigation(
-  props: React.ComponentPropsWithoutRef<typeof Popover>,
-) {
+function MobileNavigation({
+  navigation,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Popover> & {
+  navigation: NavigationItem[]
+}) {
   return (
     <Popover {...props}>
       <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
@@ -132,10 +142,11 @@ function MobileNavigation(
             </div>
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavItem href="/about">About</MobileNavItem>
-                <MobileNavItem href="/articles">Articles</MobileNavItem>
-                <MobileNavItem href="/projects">FOSS</MobileNavItem>
-                <MobileNavItem href="/products">Products</MobileNavItem>
+                {navigation.map((item) => (
+                  <MobileNavItem key={item.href} href={item.href}>
+                    {item.label}
+                  </MobileNavItem>
+                ))}
               </ul>
             </nav>
           </Popover.Panel>
@@ -174,14 +185,20 @@ function NavItem({
   )
 }
 
-function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
+function DesktopNavigation({ 
+  navigation,
+  ...props 
+}: React.ComponentPropsWithoutRef<'nav'> & {
+  navigation: NavigationItem[]
+}) {
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/articles">Articles</NavItem>
-        <NavItem href="/projects">FOSS</NavItem>
-        <NavItem href="/products">Products</NavItem>
+        {navigation.map((item) => (
+          <NavItem key={item.href} href={item.href}>
+            {item.label}
+          </NavItem>
+        ))}
       </ul>
     </nav>
   )
@@ -260,7 +277,7 @@ function Avatar({
   )
 }
 
-export function Header() {
+export function Header({ navigation }: { navigation: NavigationItem[] }) {
   let isHomePage = usePathname() === '/'
 
   let headerRef = useRef<React.ElementRef<'div'>>(null)
@@ -438,8 +455,14 @@ export function Header() {
                 )}
               </div>
               <div className="flex flex-1 justify-end md:justify-center">
-                <MobileNavigation className="pointer-events-auto md:hidden" />
-                <DesktopNavigation className="pointer-events-auto hidden md:block" />
+                <MobileNavigation 
+                  navigation={navigation}
+                  className="pointer-events-auto md:hidden" 
+                />
+                <DesktopNavigation 
+                  navigation={navigation}
+                  className="pointer-events-auto hidden md:block" 
+                />
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">

@@ -2,6 +2,12 @@ import Link from 'next/link'
 
 import { ContainerInner, ContainerOuter } from '@/components/Container'
 
+export interface NavigationItem {
+  label: string
+  href: string
+  order: number
+}
+
 function NavLink({
   href,
   children,
@@ -19,7 +25,7 @@ function NavLink({
   )
 }
 
-export function Footer() {
+export function Footer({ navigation }: { navigation: NavigationItem[] }) {
   return (
     <footer className="mt-32 flex-none">
       <ContainerOuter>
@@ -27,10 +33,11 @@ export function Footer() {
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                <NavLink href="/about">About</NavLink>
-                <NavLink href="/articles">Articles</NavLink>
-                <NavLink href="/projects">FOSS</NavLink>
-                <NavLink href="/products">Products</NavLink>
+                {navigation.map((item) => (
+                  <NavLink key={item.href} href={item.href}>
+                    {item.label}
+                  </NavLink>
+                ))}
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()} Arjun Verma. All rights

@@ -1,7 +1,19 @@
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export interface NavigationItem {
+  label: string
+  href: string
+  order: number
+}
+
+export function Layout({ 
+  children, 
+  navigation 
+}: { 
+  children: React.ReactNode
+  navigation: NavigationItem[]
+}) {
   return (
     <>
       <div className="fixed inset-0 flex justify-center sm:px-8">
@@ -10,9 +22,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       <div className="relative flex w-full flex-col">
-        <Header />
+        <Header navigation={navigation} />
         <main className="flex-auto">{children}</main>
-        <Footer />
+        <Footer navigation={navigation} />
       </div>
     </>
   )

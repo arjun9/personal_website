@@ -1,0 +1,24 @@
+{
+  "headerNavigation": [
+    {
+      "label": "About",
+      "href": "/about",
+      "order": 1
+    },
+    {
+      "label": "Articles",
+      "href": "/articles",
+      "order": 2
+    },
+    {
+      "label": "FOSS",
+      "href": "/projects",
+      "order": 3
+    },
+    {
+      "label": "Products",
+      "href": "/products",
+      "order": 4
+    }
+  ]
+}

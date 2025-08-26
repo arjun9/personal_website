@@ -331,5 +331,32 @@ export default config({
         ),
       },
     }),
+    navigation: singleton({
+      label: 'Navigation',
+      path: 'src/content/navigation',
+      format: { data: 'json' },
+      schema: {
+        headerNavigation: fields.array(
+          fields.object({
+            label: fields.text({ 
+              label: 'Navigation Label',
+              validation: { isRequired: true }
+            }),
+            href: fields.text({ 
+              label: 'URL Path',
+              validation: { isRequired: true }
+            }),
+            order: fields.integer({ 
+              label: 'Display Order',
+              defaultValue: 0 
+            }),
+          }),
+          {
+            label: 'Header Navigation Items',
+            itemLabel: props => props.fields.label.value || 'Nav Item',
+          }
+        ),
+      },
+    }),
   },
 });

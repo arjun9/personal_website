@@ -1,7 +1,7 @@
 import { type Metadata } from 'next'
 
 import { Providers } from '@/app/providers'
-import { ConditionalLayout } from '@/components/ConditionalLayout'
+import { LayoutWrapper } from '@/components/LayoutWrapper'
 
 import '@/styles/tailwind.css'
 
@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body>
         <Providers>
-          <ConditionalLayout>{children}</ConditionalLayout>
+          <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>
       </body>
     </html>

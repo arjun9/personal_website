@@ -4,11 +4,18 @@ import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 import { Layout } from '@/components/Layout'
 
-interface ConditionalLayoutProps {
-  children: React.ReactNode
+export interface NavigationItem {
+  label: string
+  href: string
+  order: number
 }
 
-export function ConditionalLayout({ children }: ConditionalLayoutProps) {
+interface ConditionalLayoutProps {
+  children: React.ReactNode
+  navigation: NavigationItem[]
+}
+
+export function ConditionalLayout({ children, navigation }: ConditionalLayoutProps) {
   const pathname = usePathname()
   const isKeystatic = pathname?.startsWith('/keystatic')
   
@@ -29,7 +36,7 @@ export function ConditionalLayout({ children }: ConditionalLayoutProps) {
   // For all other routes, use the main layout
   return (
     <div className="flex w-full">
-      <Layout>{children}</Layout>
+      <Layout navigation={navigation}>{children}</Layout>
     </div>
   )
 }
