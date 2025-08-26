@@ -11,18 +11,8 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
-const logoAirbnb = '/images/logos/airbnb.svg'
-const logoFacebook = '/images/logos/facebook.svg'
-const logoPlanetaria = '/images/logos/planetaria.svg'
-const logoPayu = '/images/logos/payu_logo.png'
-const logoUrbanCompany = '/images/logos/uc_logo.jpg'
-const logoHetuLabs = '/images/logos/hetu_logo.png'
-const image1 = '/images/photos/photo_3.jpeg'
-const image2 = '/images/photos/photo_1.jpeg'
-const image3 = '/images/photos/photo_2.jpeg'
-const image4 = '/images/image.jpeg'
-const image5 = '/images/photos/photo_4.jpeg'
-import { type ArticleWithSlug, getAllArticles } from '@/lib/keystatic'
+// These are now loaded from Keystatic content
+import { type ArticleWithSlug, getAllArticles, getHomePageContent } from '@/lib/keystatic'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -112,7 +102,7 @@ function SocialLink({
   )
 }
 
-function Newsletter() {
+function Newsletter({ title, description }: { title: string, description: string }) {
   return (
     <form
       action="/thank-you"
@@ -120,10 +110,10 @@ function Newsletter() {
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Stay up to date</span>
+        <span className="ml-3">{title}</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Get notified when I publish something new, and unsubscribe at any time.
+        {description}
       </p>
       <div className="mt-6 flex">
         <input
@@ -148,6 +138,35 @@ interface Role {
   logo: ImageProps['src']
   start: string | { label: string; dateTime: string }
   end: string | { label: string; dateTime: string }
+}
+
+interface HomePageContent {
+  title: string | null;
+  description: string | null;
+  mainHeading: string | null;
+  intro: string | null;
+  hetuLabsUrl: string | null;
+  calendlyUrl: string | null;
+  visionStatement: string | null;
+  visionLinkUrl: string | null;
+  visionLinkText: string | null;
+  socialLinks: readonly {
+    readonly platform: 'twitter' | 'instagram' | 'github' | 'linkedin';
+    readonly url: string | null;
+    readonly ariaLabel: string | null;
+  }[] | null;
+  workExperience: readonly {
+    readonly company: string | null;
+    readonly title: string | null;
+    readonly url: string | null;
+    readonly logo: string | null;
+    readonly startDate: string | null;
+    readonly endDate: string | null;
+  }[] | null;
+  resumeUrl: string | null;
+  newsletterTitle: string | null;
+  newsletterDescription: string | null;
+  photos: readonly (string | null)[] | null;
 }
 
 function Role({ role }: { role: Role }) {
@@ -187,37 +206,40 @@ function Role({ role }: { role: Role }) {
   )
 }
 
-function Resume() {
-  let resume: Array<Role> = [
-    {
-      company: 'Hetu Labs',
-      title: 'Co-founder & CTO',
-      url: 'https://www.hetu-labs.com/',
-      logo: logoHetuLabs,
-      start: '2021',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
-      },
-    },
-    {
-      company: 'Urban Company',
-      title: 'Lead Comms Platform',
-      url: 'https://www.linkedin.com/company/urbancompany/mycompany/',
-      logo: logoUrbanCompany,
-      start: '2022',
-      end: '2023',
-    },
-    {
-      company: 'PayU Payments',
-      title: 'Lead R&D Platform',
-      url: 'https://www.linkedin.com/company/payu/',
-      logo: logoPayu,
-      start: '2016',
-      end: '2022',
-    },
-  ]
+function WorkExperienceRole({ work }: { work: NonNullable<HomePageContent['workExperience']>[0] }) {
+  const startLabel = work.startDate || ''
+  const endLabel = work.endDate || ''
+  const endDate = work.endDate === 'Present' ? new Date().getFullYear().toString() : (work.endDate || '')
 
+  return (
+    <li className="flex gap-4">
+      <div className="relative mt-1 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+        <Image src={work.logo || ''} alt="" unoptimized />
+      </div>
+      <dl className="flex flex-auto flex-wrap gap-x-2">
+        <dt className="sr-only">Company</dt>
+        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+          <a href={work.url || '#'} className='cursor-pointer' target='_blank'>{work.company}</a>
+        </dd>
+        <dt className="sr-only">Role</dt>
+        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+          {work.title}
+        </dd>
+        <dt className="sr-only">Date</dt>
+        <dd
+          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+          aria-label={`${startLabel} until ${endLabel}`}
+        >
+          <time dateTime={work.startDate || ''}>{startLabel}</time>{' '}
+          <span aria-hidden="true">—</span>{' '}
+          <time dateTime={endDate}>{endLabel}</time>
+        </dd>
+      </dl>
+    </li>
+  )
+}
+
+function Resume({ workExperience, resumeUrl }: { workExperience: HomePageContent['workExperience'], resumeUrl: string | null }) {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -225,11 +247,11 @@ function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role}/>
+        {workExperience?.map((work, workIndex) => (
+          <WorkExperienceRole key={workIndex} work={work}/>
         ))}
       </ol>
-      <a href="https://drive.google.com/file/d/1g6tmDHD2ajPAVMsglITupcWyFAFt5Uw5/view?usp=sharing" target='_blank'>
+      <a href={resumeUrl || '#'} target='_blank'>
         <Button  variant="secondary" className="group mt-6 w-full">
           Download CV
           <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
@@ -239,13 +261,15 @@ function Resume() {
   )
 }
 
-function Photos() {
+function Photos({ photos }: { photos: readonly (string | null)[] | null }) {
   let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
+
+  if (!photos) return null
 
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
+        {photos.filter((image): image is string => image !== null).map((image, imageIndex) => (
           <div
             key={image}
             className={clsx(
@@ -269,56 +293,64 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  const [articles, homeContent] = await Promise.all([
+    getAllArticles().then(articles => articles.slice(0, 4)),
+    getHomePageContent()
+  ])
+
+  if (!homeContent) {
+    throw new Error('Home page content not found')
+  }
+
+  const getIconForPlatform = (platform: string) => {
+    switch (platform) {
+      case 'twitter': return TwitterIcon
+      case 'instagram': return InstagramIcon
+      case 'github': return GitHubIcon
+      case 'linkedin': return LinkedInIcon
+      default: return TwitterIcon
+    }
+  }
 
   return (
     <>
       <Container className="mt-9">
         <div className="max-w-4xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software engineer, founder, and amateur philosopher.
+            {homeContent.mainHeading || 'Software engineer, founder, and amateur philosopher.'}
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Arjun, a software engineer and entrepreneur based in Gurgaon, India.
-            I'm the Co-founder and CTO of <a href="https://www.hetu-labs.com/" className="font-semibold underline decoration-green-500">Hetu Labs</a>, where we develop technologies that
+            {homeContent.intro?.split('. ').slice(0, -1).join('. ') || "I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India"}.
+            {' '}I'm the Co-founder and CTO of <a href={homeContent.hetuLabsUrl || 'https://www.hetu-labs.com/'} className="font-semibold underline decoration-green-500">Hetu Labs</a>, where we develop technologies that
             empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions.
-            Occasionaly, i also work as a freelance software consultant. If you’re interested in working with me, feel free to&nbsp;
-            <a href="https://calendly.com/arjun-verma-in/30min" className="font-semibold underline decoration-green-500" target="_blank">
+            Occasionaly, i also work as a freelance software consultant. If you're interested in working with me, feel free to&nbsp;
+            <a href={homeContent.calendlyUrl || 'https://calendly.com/arjun-verma-in/30min'} className="font-semibold underline decoration-green-500" target="_blank">
               reach out
             </a>.
           </p>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            🔥  In light of AI’s advancement, I hope to witness a future where &nbsp;
-            <a href="https://hbr.org/2005/06/the-coming-commoditization-of-processes" className="font-medium underline decoration-blue-500" target="_blank">
-               software development is commoditized and democratized for everyone
+            {homeContent.visionStatement?.split('where')[0] || '🔥 In light of AI\'s advancement, I hope to witness a future '}where &nbsp;
+            <a href={homeContent.visionLinkUrl || 'https://hbr.org/2005/06/the-coming-commoditization-of-processes'} className="font-medium underline decoration-blue-500" target="_blank">
+               {homeContent.visionLinkText || 'software development is commoditized and democratized for everyone'}
             </a>,
             and I aim to be an integral part of this change.
           </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink
-              href="https://twitter.com/hitch_hike_engg"
-              aria-label="Follow on Twitter"
-              icon={TwitterIcon}
-            />
-            <SocialLink
-              href="https://instagram.com/hitch_hike_engg"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="https://github.com/arjun9"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/arjun-verma-895133103/"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            />
+            {homeContent.socialLinks?.map((social, index) => {
+              const IconComponent = getIconForPlatform(social.platform)
+              return (
+                <SocialLink
+                  key={index}
+                  href={social.url || '#'}
+                  aria-label={social.ariaLabel || `Follow on ${social.platform}`}
+                  icon={IconComponent}
+                />
+              )
+            })}
           </div>
         </div>
       </Container>
-      <Photos />
+      <Photos photos={homeContent.photos} />
       <Container className="mt-20 md:mt-24">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
@@ -327,8 +359,8 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Resume />
-            <Newsletter />
+            <Resume workExperience={homeContent.workExperience} resumeUrl={homeContent.resumeUrl} />
+            <Newsletter title={homeContent.newsletterTitle || 'Stay up to date'} description={homeContent.newsletterDescription || 'Get notified when I publish something new, and unsubscribe at any time.'} />
           </div>
         </div>
       </Container>

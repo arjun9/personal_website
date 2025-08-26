@@ -229,5 +229,125 @@ export default config({
         ),
       },
     }),
+    homePage: singleton({
+      label: 'Home Page',
+      path: 'src/content/home-page',
+      format: { data: 'json' },
+      schema: {
+        title: fields.text({ 
+          label: 'Meta Title', 
+          defaultValue: 'Arjun Verma - Software engineer, founder, and amateur philosopher' 
+        }),
+        description: fields.text({ 
+          label: 'Meta Description',
+          multiline: true,
+          defaultValue: "I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India."
+        }),
+        mainHeading: fields.text({ 
+          label: 'Main Heading',
+          defaultValue: 'Software engineer, founder, and amateur philosopher.'
+        }),
+        intro: fields.text({ 
+          label: 'Introduction Paragraph',
+          multiline: true,
+          defaultValue: "I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India. I'm the Co-founder and CTO of Hetu Labs, where we develop technologies that empower Small and Medium-sized Businesses (SMBs) by helping them scale their revenue with tailored software solutions. Occasionaly, i also work as a freelance software consultant."
+        }),
+        hetuLabsUrl: fields.url({ 
+          label: 'Hetu Labs URL',
+          defaultValue: 'https://www.hetu-labs.com/'
+        }),
+        calendlyUrl: fields.url({ 
+          label: 'Calendly URL',
+          defaultValue: 'https://calendly.com/arjun-verma-in/30min'
+        }),
+        visionStatement: fields.text({ 
+          label: 'Vision Statement',
+          multiline: true,
+          defaultValue: '🔥 In light of AI\'s advancement, I hope to witness a future where software development is commoditized and democratized for everyone, and I aim to be an integral part of this change.'
+        }),
+        visionLinkUrl: fields.url({ 
+          label: 'Vision Link URL',
+          defaultValue: 'https://hbr.org/2005/06/the-coming-commoditization-of-processes'
+        }),
+        visionLinkText: fields.text({ 
+          label: 'Vision Link Text',
+          defaultValue: 'software development is commoditized and democratized for everyone'
+        }),
+        socialLinks: fields.array(
+          fields.object({
+            platform: fields.select({
+              label: 'Platform',
+              options: [
+                { label: 'Twitter', value: 'twitter' },
+                { label: 'Instagram', value: 'instagram' },
+                { label: 'GitHub', value: 'github' },
+                { label: 'LinkedIn', value: 'linkedin' },
+              ],
+              defaultValue: 'twitter',
+            }),
+            url: fields.url({ 
+              label: 'URL',
+              validation: { isRequired: true }
+            }),
+            ariaLabel: fields.text({ 
+              label: 'Aria Label',
+              defaultValue: 'Follow on Twitter'
+            }),
+          }),
+          {
+            label: 'Social Links',
+            itemLabel: props => props.fields.platform.value || 'Social Link',
+          }
+        ),
+        workExperience: fields.array(
+          fields.object({
+            company: fields.text({ label: 'Company Name' }),
+            title: fields.text({ label: 'Job Title' }),
+            url: fields.url({ label: 'Company URL' }),
+            logo: fields.image({
+              label: 'Company Logo',
+              directory: 'public/images/logos',
+              publicPath: '/images/logos/',
+            }),
+            startDate: fields.text({ 
+              label: 'Start Date',
+              defaultValue: '2021'
+            }),
+            endDate: fields.text({ 
+              label: 'End Date (or "Present")',
+              defaultValue: 'Present'
+            }),
+          }),
+          {
+            label: 'Work Experience',
+            itemLabel: props => props.fields.company.value || 'Job',
+          }
+        ),
+        resumeUrl: fields.url({ 
+          label: 'Resume/CV URL',
+          defaultValue: 'https://drive.google.com/file/d/1g6tmDHD2ajPAVMsglITupcWyFAFt5Uw5/view?usp=sharing'
+        }),
+        newsletterTitle: fields.text({ 
+          label: 'Newsletter Title',
+          defaultValue: 'Stay up to date'
+        }),
+        newsletterDescription: fields.text({ 
+          label: 'Newsletter Description',
+          multiline: true,
+          defaultValue: 'Get notified when I publish something new, and unsubscribe at any time.'
+        }),
+        photos: fields.array(
+          fields.image({
+            label: 'Photo',
+            directory: 'public/images/photos',
+            publicPath: '/images/photos/',
+          }),
+          {
+            label: 'Photos',
+            itemLabel: (_, index) => `Photo ${index + 1}`,
+          }
+        ),
+      },
+    }),
   },
 });

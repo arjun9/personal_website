@@ -63,3 +63,7 @@ export async function getProductsPageContent() {
 export async function getProjectsPageContent() {
   return await reader.singletons.projectsPage.read();
 }
+
+export async function getHomePageContent() {
+  return await reader.singletons.homePage.read();
+}
