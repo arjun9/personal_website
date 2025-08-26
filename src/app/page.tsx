@@ -337,11 +337,7 @@ export default async function Home() {
             {homeContent.mainHeading || 'Software engineer, founder, and amateur philosopher.'}
           </h1>
           <div className="mt-6 text-base text-zinc-600 dark:text-zinc-400 prose prose-zinc dark:prose-invert">
-            {introContent || (
-              <>
-                Please add intro content
-              </>
-            )}
+            {introContent}
           </div>
           <div className="mt-6 flex gap-6">
             {homeContent.socialLinks?.map((social, index) => {
