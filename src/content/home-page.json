@@ -7,9 +7,23 @@
       "platform": "twitter",
       "url": "https://x.com/hitch_hike_engg",
       "ariaLabel": "Follow on Twitter"
+    },
+    {
+      "platform": "github",
+      "url": "https://github.com/arjun9",
+      "ariaLabel": "Follow on Github"
     }
   ],
-  "workExperience": [],
+  "workExperience": [
+    {
+      "company": "Hetu Labs",
+      "title": "Co-Founder & CEO",
+      "url": "www.hetu-labs.com",
+      "logo": "/images/logos/workExperience/0/logo.png",
+      "startDate": "2023",
+      "endDate": "Present"
+    }
+  ],
   "resumeUrl": "https://drive.google.com/file/d/1g6tmDHD2ajPAVMsglITupcWyFAFt5Uw5/view?usp=sharing",
   "newsletterTitle": "Stay up to date",
   "newsletterDescription": "Get notified when I publish something new, and unsubscribe at any time.",

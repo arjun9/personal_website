@@ -327,7 +327,6 @@ export default config({
           }),
           {
             label: 'Photos',
-            itemLabel: (_, index) => `Photo ${index + 1}`,
           }
         ),
       },

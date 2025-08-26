@@ -181,7 +181,7 @@ function Role({ role }: { role: Role }) {
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" unoptimized />
+        <Image src={role.logo} alt="" width={48} height={48} unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -214,7 +214,7 @@ function WorkExperienceRole({ work }: { work: NonNullable<HomePageContent['workE
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={work.logo || ''} alt="" unoptimized />
+        <Image src={work.logo || ''} alt="" width={48} height={48} unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
