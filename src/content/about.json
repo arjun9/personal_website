@@ -1,0 +1,34 @@
+{
+  "title": "About",
+  "subtitle": "I'm Arjun Verma. I live in India, where I build for the future.",
+  "description": "I'm Arjun Verma. I live in India, where I build for the future.",
+  "image": "/images/image.jpeg",
+  "content": "I've loved making things for as long as I can remember. I wrote my first program when I was 8 years old, creating all sorts of shapes and patterns in [Logo](https://en.wikipedia.org/wiki/Logo_(programming_language)) on my mom's old Compaq Deskpro. It was more than a pastime; it was a portal to a world of endless possibilities.\n\nMy journey wasn't initially steered towards entrepreneurship. I guess the seed of entrepreneurship was planted in my mind, at the age of 15, while watching [Pirates of Silicon Valley](https://en.wikipedia.org/wiki/Pirates_of_Silicon_Valley) & [Triumph of the Nerds](https://en.wikipedia.org/wiki/Triumph_of_the_Nerds), at a friend's house. The inspiring stories of simple hackers transforming the world with nothing but a laptop had a profound impact on me.\n\nToday, I live in Gurgaon with my dogo, [Greg](https://instagram.com/thegoldenboy_greg), and Garima, (my partner of seven years who has now become my wife). I'm still pursuing my lifelong dream: **to create value that transcends the ordinary**. And with every step, I continue to carry the spirit of that 8-year-old who saw a world of possibilities in every pixel and line of code.",
+  "socialLinks": [
+    {
+      "platform": "twitter",
+      "url": "https://twitter.com/hitch_hike_engg",
+      "label": "Follow on Twitter"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://instagram.com/hitch_hike_engg",
+      "label": "Follow on Instagram"
+    },
+    {
+      "platform": "github",
+      "url": "https://github.com/arjun9",
+      "label": "Follow on GitHub"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/arjun-verma-895133103/",
+      "label": "Follow on LinkedIn"
+    },
+    {
+      "platform": "email",
+      "url": "mailto:arjun.verma8412@gmail.com",
+      "label": "arjun.verma8412@gmail.com"
+    }
+  ]
+}

@@ -11,7 +11,10 @@
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@keystatic/core": "^0.5.48",
+    "@keystatic/next": "^5.0.4",
     "@mapbox/rehype-prism": "^0.8.0",
+    "@markdoc/markdoc": "^0.5.4",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.4",

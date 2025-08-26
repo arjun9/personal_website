@@ -3,42 +3,7 @@ import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoCacheNinja from '@/images/logos/cache_ninja.png'
-import logoEjabberdClient from '@/images/logos/ejabberd_client.png'
-import logoSimpleProxy from '@/images/logos/simple_proxy.png'
-import logoGPT from '@/images/logos/custom_gpt.png'
-
-
-const projects = [
-  {
-    name: 'Cache Ninja',
-    description:
-      'In Ruby on Rails, association caching is tricky, but Cache Ninja turns it into a powerful tool, enabling users to redefine their experience.',
-    link: { href: 'https://github.com/arjun9/cache_ninja', label: 'github.com' },
-    logo: logoCacheNinja,
-  },
-  {
-    name: 'Ejabberd Client',
-    description:
-      'The Ejabberd HTTP Client gem streamlines Ruby-based communication with Ejabberd XMPP servers, making it easier and more efficient',
-    link: { href: 'https://github.com/arjun9/ejabberd_http_client', label: 'github.com' },
-    logo: logoEjabberdClient,
-  },
-  {
-    name: 'Simple Proxy',
-    description:
-      'This gem boosts developer productivity by tackling CORS restrictions, smoothing out the software development lifecycle, and speeding up processes for greater efficiency.',
-    link: { href: 'https://github.com/Hetu-Labs/simple_proxy', label: 'github.com' },
-    logo: logoSimpleProxy,
-  },
-  {
-    name: 'GPT: Paul Graham’s Essays',
-    description:
-      'This is a custom-gpt model trained on Paul Graham’s essays. It’s a fun way to interact with his essays and get a glimpse into the mind of a great thinker.',
-    link: { href: 'https://chat.openai.com/g/g-SwyIhlIms-paul-graham-s-essays', label: 'chat.openai.com' },
-    logo: logoGPT,
-  }
-]
+import { getProjectsPageContent } from '@/lib/keystatic'
 
 function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -51,37 +16,49 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-export const metadata: Metadata = {
-  title: 'Projects',
-  description: 'Things I’ve made trying to give back to the community.',
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent = await getProjectsPageContent()
+  
+  return {
+    title: pageContent?.title || 'Projects',
+    description: pageContent?.description || 'Things I\'ve made trying to give back to the community.',
+  }
 }
 
-export default function Projects() {
+export default async function Projects() {
+  const pageContent = await getProjectsPageContent()
+  
+  if (!pageContent) {
+    return <div>Loading...</div>
+  }
+
   return (
     <SimpleLayout
-      title="Things I’ve made trying to give back to the community."
-      intro="I've worked on numerous small projects over the years, but only recently have I made some of them open source. If something piques your interest, feel free to check out the code and contribute your ideas for improvements."
+      title={pageContent.subtitle}
+      intro={pageContent.intro}
     >
       <ul
         role="list"
         className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {projects.map((project) => (
+        {pageContent.projects?.map((project) => (
           <Card as="li" key={project.name}>
             <div className="relative z-10 flex h-32 w-32 overflow-hidden items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <Image
-                src={project.logo}
+                src={project.logo || ''}
                 alt=""
+                width={128}
+                height={128}
                 unoptimized
               />
             </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              <Card.Link href={project.url}>{project.name}</Card.Link>
             </h2>
             <Card.Description>{project.description}</Card.Description>
             <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
               <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.link.label}</span>
+              <span className="ml-2">{project.linkLabel}</span>
             </p>
           </Card>
         ))}

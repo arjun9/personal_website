@@ -3,29 +3,7 @@ import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoCacheNinja from '@/images/logos/cache_ninja.png'
-import logoEjabberdClient from '@/images/logos/ejabberd_client.png'
-import logoSimpleProxy from '@/images/logos/simple_proxy.png'
-import logoHetuLabs from '@/images/logos/hetu_formatted.png'
-import logoSCM from '@/images/logos/scm_logo.png'
-
-
-const projects = [
-  {
-    name: 'Hetu Labs',
-    description:
-      'A technology company dedicated to empowering small and medium-sized businesses (SMBs) by scaling their revenue through customized software solutions.',
-    link: { href: 'https://www.hetu-labs.com', label: 'hetu-labs.com' },
-    logo: logoHetuLabs,
-  },
-  {
-    name: 'SimpleChain SCM',
-    description:
-      'Highly agile supply chain task tracking and management software, easily customizable to suit any industry. It streamlines operations and improves efficiency for businesses of all sizes.',
-    link: { href: 'https://www.hetu-labs.com', label: 'simple-chain.com' },
-    logo: logoSCM,
-  }
-]
+import { getProductsPageContent } from '@/lib/keystatic'
 
 function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -38,37 +16,49 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-export const metadata: Metadata = {
-  title: 'Projects',
-  description: 'Things I’ve made trying to put my dent in the universe.',
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent = await getProductsPageContent()
+  
+  return {
+    title: pageContent?.title || 'Products',
+    description: pageContent?.description || "Things I've made trying to put my dent in the universe.",
+  }
 }
 
-export default function Products() {
+export default async function Products() {
+  const pageContent = await getProductsPageContent()
+  
+  if (!pageContent) {
+    return <div>Loading...</div>
+  }
+
   return (
     <SimpleLayout
-      title="Things I’ve made trying to put my dent in the universe."
-      intro="I’ve loved making things for as long as I can remember, and I’ve been lucky enough to be able to make a living doing it. Here are some of the companies/products I’ve created over the years"
+      title={pageContent.subtitle}
+      intro={pageContent.intro}
     >
       <ul
         role="list"
         className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {projects.map((project) => (
-          <Card as="li" key={project.name}>
+        {pageContent.products?.map((product) => (
+          <Card as="li" key={product.name}>
             <div className="relative z-10 flex h-32 w-32 overflow-hidden items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <Image
-                src={project.logo}
+                src={product.logo || ''}
                 alt=""
+                width={128}
+                height={128}
                 unoptimized
               />
             </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              <Card.Link href={product.url}>{product.name}</Card.Link>
             </h2>
-            <Card.Description>{project.description}</Card.Description>
+            <Card.Description>{product.description}</Card.Description>
             <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
               <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.link.label}</span>
+              <span className="ml-2">{product.linkLabel}</span>
             </p>
           </Card>
         ))}

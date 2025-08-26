@@ -20,9 +20,9 @@ import logoHetuLabs from '@/images/logos/hetu_formatted.png'
 import image1 from '@/images/photos/photo_3.jpeg'
 import image2 from '@/images/photos/photo_1.jpeg'
 import image3 from '@/images/photos/photo_2.jpeg'
-import image4 from '@/images/portrait.jpeg'
+import image4 from '@/images/image.jpeg'
 import image5 from '@/images/photos/photo_4.jpeg'
-import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
+import { type ArticleWithSlug, getAllArticles } from '@/lib/keystatic'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
