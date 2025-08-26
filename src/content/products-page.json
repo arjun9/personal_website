@@ -2,21 +2,21 @@
   "title": "Products",
   "subtitle": "Things I've made trying to put my dent in the universe.",
   "description": "Things I've made trying to put my dent in the universe.",
-  "intro": "I've loved making things for as long as I can remember, and I've been lucky enough to be able to make a living doing it. Here are some of the companies/products I've created over the years",
+  "intro": "I’ve loved making things for as long as I can remember, and I’ve been lucky enough to be able to make a living doing it. Here are some of the companies/products I’ve created over the years",
   "products": [
     {
       "name": "Hetu Labs",
       "description": "A technology company dedicated to empowering small and medium-sized businesses (SMBs) by scaling their revenue through customized software solutions.",
       "url": "https://www.hetu-labs.com",
       "linkLabel": "hetu-labs.com",
-      "logo": "/images/logos/hetu_formatted.png"
+      "logo": "/images/logos/products/0/logo.png"
     },
     {
       "name": "SimpleChain SCM",
       "description": "Highly agile supply chain task tracking and management software, easily customizable to suit any industry. It streamlines operations and improves efficiency for businesses of all sizes.",
       "url": "https://www.hetu-labs.com",
       "linkLabel": "simple-chain.com",
-      "logo": "/images/logos/scm_logo.png"
+      "logo": "/images/logos/products/1/logo.png"
     }
   ]
 }

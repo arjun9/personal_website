@@ -28,14 +28,14 @@ export default config({
         }),
         image: fields.image({
           label: 'Featured Image',
-          directory: 'src/images/articles',
+          directory: 'public/images/articles',
           publicPath: '/images/articles/',
         }),
         content: fields.markdoc({ 
           label: 'Content',
           options: {
             image: {
-              directory: 'src/images/articles',
+              directory: 'public/images/articles',
               publicPath: '/images/articles/',
             },
           },
@@ -64,14 +64,14 @@ export default config({
         }),
         image: fields.image({
           label: 'Portrait Image',
-          directory: 'src/images',
+          directory: 'public/images',
           publicPath: '/images/',
         }),
         content: fields.markdoc({ 
           label: 'About Content',
           options: {
             image: {
-              directory: 'src/images',
+              directory: 'public/images',
               publicPath: '/images/',
             },
           },
@@ -167,7 +167,7 @@ export default config({
             }),
             logo: fields.image({
               label: 'Logo',
-              directory: 'src/images/logos',
+              directory: 'public/images/logos',
               publicPath: '/images/logos/',
             }),
           }),
@@ -218,7 +218,7 @@ export default config({
             }),
             logo: fields.image({
               label: 'Logo',
-              directory: 'src/images/logos',
+              directory: 'public/images/logos',
               publicPath: '/images/logos/',
             }),
           }),

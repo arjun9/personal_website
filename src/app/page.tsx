@@ -11,17 +11,17 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoPayu from '@/images/logos/payu_logo.png'
-import logoUrbanCompany from '@/images/logos/uc_logo.jpg'
-import logoHetuLabs from '@/images/logos/hetu_formatted.png'
-import image1 from '@/images/photos/photo_3.jpeg'
-import image2 from '@/images/photos/photo_1.jpeg'
-import image3 from '@/images/photos/photo_2.jpeg'
-import image4 from '@/images/image.jpeg'
-import image5 from '@/images/photos/photo_4.jpeg'
+const logoAirbnb = '/images/logos/airbnb.svg'
+const logoFacebook = '/images/logos/facebook.svg'
+const logoPlanetaria = '/images/logos/planetaria.svg'
+const logoPayu = '/images/logos/payu_logo.png'
+const logoUrbanCompany = '/images/logos/uc_logo.jpg'
+const logoHetuLabs = '/images/logos/hetu_logo.png'
+const image1 = '/images/photos/photo_3.jpeg'
+const image2 = '/images/photos/photo_1.jpeg'
+const image3 = '/images/photos/photo_2.jpeg'
+const image4 = '/images/image.jpeg'
+const image5 = '/images/photos/photo_4.jpeg'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/keystatic'
 import { formatDate } from '@/lib/formatDate'
 
@@ -247,7 +247,7 @@ function Photos() {
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
         {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
           <div
-            key={image.src}
+            key={image}
             className={clsx(
               'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
               rotations[imageIndex % rotations.length],
@@ -256,6 +256,8 @@ function Photos() {
             <Image
               src={image}
               alt=""
+              width={288}
+              height={320}
               sizes="(min-width: 640px) 18rem, 11rem"
               className="absolute inset-0 h-full w-full object-cover"
             />
