@@ -1,4 +1,4 @@
-import { getNavigationContent } from '@/lib/keystatic'
+import { getNavigationContent, getSiteSettingsContent } from '@/lib/keystatic'
 import { ConditionalLayout } from '@/components/ConditionalLayout'
 
 export interface NavigationItem {
@@ -13,9 +13,15 @@ interface LayoutWrapperProps {
 
 export async function LayoutWrapper({ children }: LayoutWrapperProps) {
   let navigation: NavigationItem[] = []
+  let avatarImage = '/images/avatar.png' // Default fallback
   
   try {
-    const navigationData = await getNavigationContent()
+    const [navigationData, siteSettings] = await Promise.all([
+      getNavigationContent(),
+      getSiteSettingsContent()
+    ])
+    
+    // Handle navigation data
     if (navigationData?.headerNavigation) {
       // Create a new array from the readonly array, map to ensure order is number, and sort it
       navigation = [...navigationData.headerNavigation]
@@ -26,8 +32,13 @@ export async function LayoutWrapper({ children }: LayoutWrapperProps) {
         }))
         .sort((a, b) => a.order - b.order)
     }
+    
+    // Handle avatar image
+    if (siteSettings?.avatarImage) {
+      avatarImage = siteSettings.avatarImage
+    }
   } catch (error) {
-    console.warn('Failed to load navigation data, using defaults:', error)
+    console.warn('Failed to load content data, using defaults:', error)
     // Fallback to default navigation
     navigation = [
       { label: 'About', href: '/about', order: 1 },
@@ -37,5 +48,5 @@ export async function LayoutWrapper({ children }: LayoutWrapperProps) {
     ]
   }
 
-  return <ConditionalLayout navigation={navigation}>{children}</ConditionalLayout>
+  return <ConditionalLayout navigation={navigation} avatarImage={avatarImage}>{children}</ConditionalLayout>
 }

@@ -331,6 +331,23 @@ export default config({
         ),
       },
     }),
+    siteSettings: singleton({
+      label: 'Site Settings',
+      path: 'src/content/site-settings',
+      format: { data: 'json' },
+      schema: {
+        siteName: fields.text({ 
+          label: 'Site Name',
+          defaultValue: 'Arjun Verma'
+        }),
+        avatarImage: fields.image({
+          label: 'Avatar Image',
+          description: 'Your profile picture that appears in the header',
+          directory: 'public/images',
+          publicPath: '/images/',
+        }),
+      },
+    }),
     navigation: singleton({
       label: 'Navigation',
       path: 'src/content/navigation',

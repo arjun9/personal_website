@@ -9,10 +9,12 @@ export interface NavigationItem {
 
 export function Layout({ 
   children, 
-  navigation 
+  navigation,
+  avatarImage 
 }: { 
   children: React.ReactNode
   navigation: NavigationItem[]
+  avatarImage: string
 }) {
   return (
     <>
@@ -22,7 +24,7 @@ export function Layout({
         </div>
       </div>
       <div className="relative flex w-full flex-col">
-        <Header navigation={navigation} />
+        <Header navigation={navigation} avatarImage={avatarImage} />
         <main className="flex-auto">{children}</main>
         <Footer navigation={navigation} />
       </div>

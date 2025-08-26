@@ -13,9 +13,10 @@ export interface NavigationItem {
 interface ConditionalLayoutProps {
   children: React.ReactNode
   navigation: NavigationItem[]
+  avatarImage: string
 }
 
-export function ConditionalLayout({ children, navigation }: ConditionalLayoutProps) {
+export function ConditionalLayout({ children, navigation, avatarImage }: ConditionalLayoutProps) {
   const pathname = usePathname()
   const isKeystatic = pathname?.startsWith('/keystatic')
   
@@ -36,7 +37,7 @@ export function ConditionalLayout({ children, navigation }: ConditionalLayoutPro
   // For all other routes, use the main layout
   return (
     <div className="flex w-full">
-      <Layout navigation={navigation}>{children}</Layout>
+      <Layout navigation={navigation} avatarImage={avatarImage}>{children}</Layout>
     </div>
   )
 }

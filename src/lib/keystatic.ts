@@ -71,3 +71,7 @@ export async function getHomePageContent() {
 export async function getNavigationContent() {
   return await reader.singletons.navigation.read();
 }
+
+export async function getSiteSettingsContent() {
+  return await reader.singletons.siteSettings.read();
+}

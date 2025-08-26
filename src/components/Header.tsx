@@ -10,8 +10,6 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 
-const avatarImage = '/images/avatar.png'
-
 export interface NavigationItem {
   label: string
   href: string
@@ -250,9 +248,11 @@ function AvatarContainer({
 function Avatar({
   large = false,
   className,
+  avatarImage,
   ...props
 }: Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> & {
   large?: boolean
+  avatarImage: string
 }) {
   return (
     <Link
@@ -277,7 +277,13 @@ function Avatar({
   )
 }
 
-export function Header({ navigation }: { navigation: NavigationItem[] }) {
+export function Header({ 
+  navigation, 
+  avatarImage 
+}: { 
+  navigation: NavigationItem[]
+  avatarImage: string 
+}) {
   let isHomePage = usePathname() === '/'
 
   let headerRef = useRef<React.ElementRef<'div'>>(null)
@@ -423,6 +429,7 @@ export function Header({ navigation }: { navigation: NavigationItem[] }) {
                   />
                   <Avatar
                     large
+                    avatarImage={avatarImage}
                     className="block h-16 w-16 origin-left"
                     style={{ transform: 'var(--avatar-image-transform)' }}
                   />
@@ -450,7 +457,7 @@ export function Header({ navigation }: { navigation: NavigationItem[] }) {
               <div className="flex flex-1">
                 {!isHomePage && (
                   <AvatarContainer>
-                    <Avatar />
+                    <Avatar avatarImage={avatarImage} />
                   </AvatarContainer>
                 )}
               </div>
