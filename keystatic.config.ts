@@ -256,27 +256,6 @@ export default config({
             },
           }
         }),
-        hetuLabsUrl: fields.url({ 
-          label: 'Hetu Labs URL',
-          defaultValue: 'https://www.hetu-labs.com/'
-        }),
-        calendlyUrl: fields.url({ 
-          label: 'Calendly URL',
-          defaultValue: 'https://calendly.com/arjun-verma-in/30min'
-        }),
-        visionStatement: fields.text({ 
-          label: 'Vision Statement',
-          multiline: true,
-          defaultValue: '🔥 In light of AI\'s advancement, I hope to witness a future where software development is commoditized and democratized for everyone, and I aim to be an integral part of this change.'
-        }),
-        visionLinkUrl: fields.url({ 
-          label: 'Vision Link URL',
-          defaultValue: 'https://hbr.org/2005/06/the-coming-commoditization-of-processes'
-        }),
-        visionLinkText: fields.text({ 
-          label: 'Vision Link Text',
-          defaultValue: 'software development is commoditized and democratized for everyone'
-        }),
         socialLinks: fields.array(
           fields.object({
             platform: fields.select({
