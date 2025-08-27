@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
+import { TwitterPostButton } from '@/components/TwitterPostButton'
 import { type ArticleLayoutProps } from '@/lib/keystatic'
 import { formatDate } from '@/lib/formatDate'
 
@@ -46,6 +47,13 @@ export function ArticleLayout({
               <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
             </button>
           )}
+          <TwitterPostButton 
+            article={{
+              title: article.title,
+              description: article.description || '',
+              slug: article.slug,
+            }}
+          />
           <article>
             <header className="flex flex-col">
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
