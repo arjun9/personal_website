@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import { trackEngagement } from '@/lib/analytics'
 
 const variantStyles = {
   primary:
@@ -10,6 +11,8 @@ const variantStyles = {
 
 type ButtonProps = {
   variant?: keyof typeof variantStyles
+  trackClick?: boolean
+  analyticsLabel?: string
 } & (
   | (React.ComponentPropsWithoutRef<'button'> & { href?: undefined })
   | React.ComponentPropsWithoutRef<typeof Link>
@@ -18,6 +21,8 @@ type ButtonProps = {
 export function Button({
   variant = 'primary',
   className,
+  trackClick = false,
+  analyticsLabel,
   ...props
 }: ButtonProps) {
   className = clsx(
@@ -26,9 +31,27 @@ export function Button({
     className,
   )
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (trackClick && analyticsLabel) {
+      trackEngagement.buttonClick(analyticsLabel)
+    }
+    // Call the original onClick if it exists
+    if (props.onClick) {
+      props.onClick(e)
+    }
+  }
+
   return typeof props.href === 'undefined' ? (
-    <button className={className} {...props} />
+    <button 
+      className={className} 
+      onClick={handleClick}
+      {...props} 
+    />
   ) : (
-    <Link className={className} {...props} />
+    <Link 
+      className={className} 
+      onClick={handleClick}
+      {...props} 
+    />
   )
 }
