@@ -3,7 +3,8 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'local',
+    kind: 'github',
+    repo: 'arjun9/personal_website'
   },
   collections: {
     articles: collection({
