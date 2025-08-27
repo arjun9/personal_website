@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Initialize Twitter client
+    // Initialize Twitter client with OAuth 1.0a (required for write operations)
     const client = new TwitterApi({
       appKey: process.env.TWITTER_APP_KEY!,
       appSecret: process.env.TWITTER_APP_SECRET!,

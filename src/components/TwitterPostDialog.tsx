@@ -202,7 +202,6 @@ export function TwitterPostDialog({ isOpen, onClose, article }: TwitterPostDialo
               <div className="mt-6 flex justify-end space-x-3">
                 <Button
                   type="button"
-                  variant="outline"
                   onClick={handleClose}
                   disabled={isPosting}
                 >

@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    // Initialize Twitter client
+    // Initialize Twitter client with OAuth 1.0a (required for write operations)
     const client = new TwitterApi({
       appKey: process.env.TWITTER_APP_KEY!,
       appSecret: process.env.TWITTER_APP_SECRET!,
@@ -33,6 +33,10 @@ export async function POST(request: NextRequest) {
       accessSecret: process.env.TWITTER_ACCESS_SECRET!,
     })
 
+    // Test authentication first
+    const user = await client.v2.me()
+    console.log('Auth test successful for user:', user.data.username)
+    
     // Upload media
     const mediaId = await client.v1.uploadMedia(buffer, {
       mimeType: file.type,
