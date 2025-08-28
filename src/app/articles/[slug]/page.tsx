@@ -22,9 +22,37 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const articleUrl = `${siteUrl}/articles/${params.slug}`
+  const imageUrl = article.image ? `${siteUrl}${article.image}` : `${siteUrl}/images/portrait.jpeg`
+
   return {
     title: article.title,
     description: article.description,
+    openGraph: {
+      type: 'article',
+      url: articleUrl,
+      title: article.title,
+      description: article.description,
+      siteName: 'Arjun Verma',
+      publishedTime: article.date || new Date().toISOString(),
+      authors: [article.author || 'Arjun Verma'],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: article.twitterCard || 'summary_large_image', // Allow article to specify card type
+      title: article.title,
+      description: article.description,
+      creator: '@arjunverma841',
+      images: [imageUrl],
+    },
   }
 }
 

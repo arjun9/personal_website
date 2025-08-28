@@ -32,6 +32,16 @@ export default config({
           directory: 'public/images/articles',
           publicPath: '/images/articles/',
         }),
+        twitterCard: fields.select({
+          label: 'Twitter Card Type',
+          options: [
+            { label: 'Summary', value: 'summary' },
+            { label: 'Summary Large Image', value: 'summary_large_image' },
+            { label: 'App Card', value: 'app' },
+            { label: 'Player Card', value: 'player' },
+          ],
+          defaultValue: 'summary_large_image',
+        }),
         content: fields.markdoc({ 
           label: 'Content',
           options: {

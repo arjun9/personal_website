@@ -30,11 +30,21 @@ export const metadata: Metadata = {
     title: 'Arjun Verma - Software engineer, founder, and amateur philosopher',
     description: 'I\'m Arjun, a software engineer and entrepreneur based in Gurgaon, India. I\'m the founder and CTO of Hetu Labs, where we develop technologies that empower SMBs to grow their business online.',
     siteName: 'Arjun Verma',
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: 'Arjun Verma',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Arjun Verma - Software engineer, founder, and amateur philosopher',
     description: 'I\'m Arjun, a software engineer and entrepreneur based in Gurgaon, India. I\'m the founder and CTO of Hetu Labs, where we develop technologies that empower SMBs to grow their business online.',
+    creator: '@arjunverma841',
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.jpeg`],
   },
   robots: {
     index: true,
