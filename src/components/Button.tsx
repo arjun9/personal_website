@@ -33,13 +33,13 @@ export function Button({
     className,
   )
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     if (trackClick && analyticsLabel) {
       trackEngagement.buttonClick(analyticsLabel)
     }
     // Call the original onClick if it exists
     if (props.onClick) {
-      props.onClick(e)
+      props.onClick(e as any)
     }
   }
 

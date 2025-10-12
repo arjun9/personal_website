@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import { Suspense } from 'react'
 
 import { Providers } from '@/app/providers'
 import { LayoutWrapper } from '@/components/LayoutWrapper'
@@ -67,9 +68,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body>
-        <GoogleAnalytics 
-          GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-        />
+        <Suspense fallback={null}>
+          <GoogleAnalytics 
+            GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+          />
+        </Suspense>
         <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>
