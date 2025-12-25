@@ -57,20 +57,38 @@ function ArticleLink({ article }: { article: ArticleWithSlug }) {
 
 function TechStack() {
   const techs = [
-    { name: 'Rust', color: 'text-orange-600 dark:text-orange-400' },
-    { name: 'Ruby', color: 'text-red-600 dark:text-red-400' },
-    { name: 'Python', color: 'text-yellow-600 dark:text-yellow-400' },
-    { name: 'Go', color: 'text-cyan-600 dark:text-cyan-400' },
+    { name: 'Ruby/Rails', years: '10y', color: 'text-red-600 dark:text-red-400' },
+    { name: 'Kafka', years: '10y', color: 'text-zinc-600 dark:text-zinc-300' },
+    { name: 'AWS', years: '8y', color: 'text-amber-600 dark:text-amber-400' },
+    { name: 'Rust', years: '4y', color: 'text-orange-600 dark:text-orange-400' },
+    { name: 'AI/ML', years: '3y', color: 'text-purple-600 dark:text-purple-400' },
   ]
   
   return (
-    <div className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+    <div className="flex flex-wrap gap-x-4 gap-y-2 font-mono text-xs">
       {techs.map((tech) => (
-        <span key={tech.name} className={clsx('transition-colors', tech.color)}>
-          {tech.name}
+        <span key={tech.name} className="flex items-center gap-1.5">
+          <span className={clsx('transition-colors', tech.color)}>{tech.name}</span>
+          <span className="text-zinc-400 dark:text-zinc-500">{tech.years}</span>
         </span>
       ))}
     </div>
+  )
+}
+
+function ToptalBadge() {
+  return (
+    <a 
+      href="https://www.toptal.com/resume/arjun-verma"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20 transition hover:bg-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:ring-emerald-500/20 dark:hover:bg-emerald-500/20"
+    >
+      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.227 10.038L10.188 0l-2.04 2.04 3.773 3.769-8.155 8.153L13.807 24l2.039-2.039-3.772-3.771 8.16-8.152h-.007z"/>
+      </svg>
+      Toptal Developer
+    </a>
   )
 }
 
@@ -182,6 +200,11 @@ export default async function Home() {
           {/* Tech Stack */}
           <div className="mt-6">
             <TechStack />
+          </div>
+
+          {/* Toptal Badge */}
+          <div className="mt-4">
+            <ToptalBadge />
           </div>
 
           {/* Social Links */}
