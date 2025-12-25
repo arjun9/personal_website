@@ -1,11 +1,16 @@
 // keystatic.config.ts
 import { config, fields, collection, singleton } from '@keystatic/core';
 
+// Use local storage in development, GitHub in production
+const storage = process.env.NODE_ENV === 'development' 
+  ? { kind: 'local' as const }
+  : { 
+      kind: 'github' as const,
+      repo: 'arjun9/personal_website' as const,
+    };
+
 export default config({
-  storage: {
-    kind: 'github',
-    repo: 'arjun9/personal_website'
-  },
+  storage,
   collections: {
     articles: collection({
       label: 'Articles',
