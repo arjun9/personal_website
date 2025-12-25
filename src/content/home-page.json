@@ -1,7 +1,7 @@
 {
-  "title": "Arjun Verma | Backend Architect, System Design & ML Engineer",
-  "description": "Backend architect specializing in System Design, Ruby on Rails, Rust, and Distributed Systems. Currently, exploring ML/AI.",
-  "mainHeading": "Hi, I'm Arjun Verma.",
+  "title": "Arjun Verma | Backend Architect & Systems Engineer",
+  "description": "Backend architect specializing in distributed systems, Rust, and Ruby on Rails. Currently exploring AI/ML.",
+  "mainHeading": "Arjun Verma",
   "socialLinks": [
     {
       "platform": "twitter",
@@ -23,7 +23,7 @@
     {
       "company": "Hetu Labs",
       "title": "Co-Founder & CEO",
-      "url": "www.hetu-labs.com",
+      "url": "https://www.hetu-labs.com",
       "logo": "/images/logos/workExperience/0/logo.png",
       "startDate": "2023",
       "endDate": "Present"

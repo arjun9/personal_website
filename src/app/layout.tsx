@@ -1,11 +1,24 @@
 import { type Metadata } from 'next'
 import { Suspense } from 'react'
+import { JetBrains_Mono, Inter } from 'next/font/google'
 
 import { Providers } from '@/app/providers'
 import { LayoutWrapper } from '@/components/LayoutWrapper'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 import '@/styles/tailwind.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -66,8 +79,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body>
+    <html lang="en" className={`h-full antialiased ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+      <body className="font-sans bg-white dark:bg-zinc-900">
         <Suspense fallback={null}>
           <GoogleAnalytics 
             GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}

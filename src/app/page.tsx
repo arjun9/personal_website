@@ -1,148 +1,77 @@
 import React from 'react'
-import Image, { type ImageProps } from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 
-import { Button } from '@/components/Button'
-
 // Force dynamic rendering to pick up Keystatic content changes
 export const dynamic = 'force-dynamic'
-import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
-// These are now loaded from Keystatic content
 import { type ArticleWithSlug, getAllArticles, getHomePageContent } from '@/lib/keystatic'
 import { formatDate } from '@/lib/formatDate'
 import Markdoc from '@markdoc/markdoc'
 
-function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
-
-function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
-
-function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function Article({ article }: { article: ArticleWithSlug }) {
-  return (
-    <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>
-        {article.title}
-      </Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
-      </Card.Eyebrow>
-      <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read article</Card.Cta>
-    </Card>
-  )
-}
-
 function SocialLink({
   icon: Icon,
+  label,
   ...props
 }: React.ComponentPropsWithoutRef<typeof Link> & {
   icon: React.ComponentType<{ className?: string }>
+  label: string
 }) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+    <Link 
+      className="group flex items-center gap-2 text-sm text-zinc-500 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100" 
+      {...props}
+    >
+      <Icon className="h-5 w-5 flex-none fill-zinc-500 transition group-hover:fill-zinc-900 dark:fill-zinc-400 dark:group-hover:fill-zinc-100" />
+      <span className="font-mono text-xs">{label}</span>
     </Link>
   )
 }
 
-function Newsletter({ title, description }: { title: string, description: string }) {
+function ArticleLink({ article }: { article: ArticleWithSlug }) {
   return (
-    <form
-      action="/thank-you"
-      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+    <Link 
+      href={`/articles/${article.slug}`}
+      className="group block"
     >
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <MailIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">{title}</span>
-      </h2>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        {description}
-      </p>
-      <div className="mt-6 flex">
-        <input
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-          required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-green-500 focus:outline-none focus:ring-4 focus:ring-green-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-green-400 dark:focus:ring-green-400/10 sm:text-sm"
-        />
-        <Button type="submit" className="ml-4 flex-none">
-          Join
-        </Button>
-      </div>
-    </form>
+      <article className="flex items-baseline gap-4">
+        <time 
+          dateTime={article.date} 
+          className="flex-none font-mono text-xs text-zinc-400 dark:text-zinc-500 tabular-nums"
+        >
+          {formatDate(article.date).split(',')[0]}
+        </time>
+        <h3 className="text-sm text-zinc-600 transition group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-100">
+          {article.title}
+        </h3>
+      </article>
+    </Link>
   )
 }
 
-interface Role {
-  company: string
-  title: string
-  url: string
-  logo: ImageProps['src']
-  start: string | { label: string; dateTime: string }
-  end: string | { label: string; dateTime: string }
+function TechStack() {
+  const techs = [
+    { name: 'Rust', color: 'text-orange-600 dark:text-orange-400' },
+    { name: 'Ruby', color: 'text-red-600 dark:text-red-400' },
+    { name: 'Python', color: 'text-yellow-600 dark:text-yellow-400' },
+    { name: 'Go', color: 'text-cyan-600 dark:text-cyan-400' },
+  ]
+  
+  return (
+    <div className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+      {techs.map((tech) => (
+        <span key={tech.name} className={clsx('transition-colors', tech.color)}>
+          {tech.name}
+        </span>
+      ))}
+    </div>
+  )
 }
 
 interface HomePageContent {
@@ -172,132 +101,9 @@ interface HomePageContent {
   photos: readonly (string | null)[] | null;
 }
 
-function Role({ role }: { role: Role }) {
-  let startLabel =
-    typeof role.start === 'string' ? role.start : role.start.label
-  let startDate =
-    typeof role.start === 'string' ? role.start : role.start.dateTime
-
-  let endLabel = typeof role.end === 'string' ? role.end : role.end.label
-  let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
-
-  return (
-    <li className="flex gap-4">
-      <div className="relative mt-1 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" width={48} height={48} unoptimized />
-      </div>
-      <dl className="flex flex-auto flex-wrap gap-x-2">
-        <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          <a href={role.url} className='cursor-pointer' target='_blank'>{role.company}</a>
-        </dd>
-        <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {role.title}
-        </dd>
-        <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
-          <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
-          <time dateTime={endDate}>{endLabel}</time>
-        </dd>
-      </dl>
-    </li>
-  )
-}
-
-function WorkExperienceRole({ work }: { work: NonNullable<HomePageContent['workExperience']>[0] }) {
-  const startLabel = work.startDate || ''
-  const endLabel = work.endDate || ''
-  const endDate = work.endDate === 'Present' ? new Date().getFullYear().toString() : (work.endDate || '')
-
-  return (
-    <li className="flex gap-4">
-      <div className="relative mt-1 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={work.logo || ''} alt="" width={48} height={48} unoptimized />
-      </div>
-      <dl className="flex flex-auto flex-wrap gap-x-2">
-        <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          <a href={work.url || '#'} className='cursor-pointer' target='_blank'>{work.company}</a>
-        </dd>
-        <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {work.title}
-        </dd>
-        <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
-          <time dateTime={work.startDate || ''}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
-          <time dateTime={endDate}>{endLabel}</time>
-        </dd>
-      </dl>
-    </li>
-  )
-}
-
-function Resume({ workExperience, resumeUrl }: { workExperience: HomePageContent['workExperience'], resumeUrl: string | null }) {
-  return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work</span>
-      </h2>
-      <ol className="mt-6 space-y-4">
-        {workExperience?.map((work, workIndex) => (
-          <WorkExperienceRole key={workIndex} work={work}/>
-        ))}
-      </ol>
-      <a href={resumeUrl || '#'} target='_blank'>
-        <Button  variant="secondary" className="group mt-6 w-full">
-          Download CV
-          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-        </Button>
-      </a>
-    </div>
-  )
-}
-
-function Photos({ photos }: { photos: readonly (string | null)[] | null }) {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-
-  if (!photos) return null
-
-  return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {photos.filter((image): image is string => image !== null).map((image, imageIndex) => (
-          <div
-            key={image}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex % rotations.length],
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              width={288}
-              height={320}
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 export default async function Home() {
   const [articles, homeContent] = await Promise.all([
-    getAllArticles().then(articles => articles.slice(0, 4)),
+    getAllArticles().then(articles => articles.slice(0, 3)),
     getHomePageContent()
   ])
 
@@ -318,14 +124,22 @@ export default async function Home() {
       introContent = Markdoc.renderers.react(renderable, React)
     } catch (error) {
       console.error('Error rendering intro content:', error)
-      introContent = "I'm Arjun, a software engineer and entrepreneur based in Gurgaon, India."
+      introContent = "Backend architect who loves building things that scale."
+    }
+  }
+
+  const getSocialLabel = (platform: string) => {
+    switch (platform) {
+      case 'twitter': return '@hitch_hike_engg'
+      case 'github': return 'arjun9'
+      case 'linkedin': return 'in/arjun-verma'
+      default: return platform
     }
   }
 
   const getIconForPlatform = (platform: string) => {
     switch (platform) {
       case 'twitter': return TwitterIcon
-      case 'instagram': return InstagramIcon
       case 'github': return GitHubIcon
       case 'linkedin': return LinkedInIcon
       default: return TwitterIcon
@@ -334,43 +148,145 @@ export default async function Home() {
 
   return (
     <>
-      <Container className="mt-9">
-        <div className="max-w-4xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            {homeContent.mainHeading || 'Software engineer, founder, and amateur philosopher.'}
-          </h1>
-          <div className="mt-6 text-base text-zinc-600 dark:text-zinc-400 prose prose-zinc dark:prose-invert">
+      {/* Hero Section */}
+      <Container className="mt-16 sm:mt-24">
+        <div className="max-w-2xl">
+          {/* Avatar and Name */}
+          <div className="flex items-center gap-6">
+            <div className="relative">
+              <Image
+                src="/images/avatarImage.png"
+                alt="Arjun Verma"
+                width={72}
+                height={72}
+                className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800"
+                priority
+              />
+              <div className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-white bg-emerald-500 dark:border-zinc-900" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
+                {homeContent.mainHeading || 'Arjun Verma'}
+              </h1>
+              <p className="mt-1 font-mono text-sm text-zinc-500 dark:text-zinc-400">
+                Backend Architect · Systems Engineer
+              </p>
+            </div>
+          </div>
+
+          {/* Intro */}
+          <div className="mt-8 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 [&_a]:text-emerald-600 [&_a]:underline [&_a]:decoration-emerald-600/30 [&_a]:underline-offset-2 [&_a]:transition hover:[&_a]:decoration-emerald-600 dark:[&_a]:text-emerald-400 dark:[&_a]:decoration-emerald-400/30 dark:hover:[&_a]:decoration-emerald-400">
             {introContent}
           </div>
-          <div className="mt-6 flex gap-6">
+
+          {/* Tech Stack */}
+          <div className="mt-6">
+            <TechStack />
+          </div>
+
+          {/* Social Links */}
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
             {homeContent.socialLinks?.map((social, index) => {
               const IconComponent = getIconForPlatform(social.platform)
               return (
                 <SocialLink
                   key={index}
                   href={social.url || '#'}
-                  aria-label={social.ariaLabel || `Follow on ${social.platform}`}
                   icon={IconComponent}
+                  label={getSocialLabel(social.platform)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 />
               )
             })}
           </div>
         </div>
       </Container>
-      <Photos photos={homeContent.photos} />
-      <Container className="mt-20 md:mt-24">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
-          </div>
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Resume workExperience={homeContent.workExperience} resumeUrl={homeContent.resumeUrl} />
-            <Newsletter title={homeContent.newsletterTitle || 'Stay up to date'} description={homeContent.newsletterDescription || 'Get notified when I publish something new, and unsubscribe at any time.'} />
-          </div>
+
+      {/* Work & Writing Section */}
+      <Container className="mt-20 sm:mt-28">
+        <div className="grid gap-16 sm:grid-cols-2 sm:gap-12">
+          {/* Recent Work */}
+          <section>
+            <h2 className="flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              <span className="font-mono text-emerald-500">01</span>
+              <span>Work</span>
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {homeContent.workExperience?.map((work, index) => (
+                <li key={index}>
+                  <a 
+                    href={work.url || '#'} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4"
+                  >
+                    <div className="flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-lg bg-zinc-50 ring-1 ring-zinc-900/5 dark:bg-zinc-800 dark:ring-white/5">
+                      <Image 
+                        src={work.logo || ''} 
+                        alt={work.company || ''} 
+                        width={40} 
+                        height={40}
+                        className="h-8 w-8 object-contain"
+                        unoptimized
+                      />
+                    </div>
+                    <div className="flex-auto">
+                      <p className="text-sm font-medium text-zinc-900 transition group-hover:text-emerald-600 dark:text-zinc-100 dark:group-hover:text-emerald-400">
+                        {work.company}
+                      </p>
+                      <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                        {work.title}
+                      </p>
+                    </div>
+                    <span className="flex-none font-mono text-xs text-zinc-400 dark:text-zinc-500">
+                      {work.startDate}–{work.endDate === 'Present' ? 'now' : work.endDate}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {homeContent.resumeUrl && (
+              <a 
+                href={homeContent.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 font-mono text-xs text-zinc-500 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                Download CV
+              </a>
+            )}
+          </section>
+
+          {/* Recent Writing */}
+          <section>
+            <h2 className="flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              <span className="font-mono text-emerald-500">02</span>
+              <span>Writing</span>
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {articles.map((article) => (
+                <li key={article.slug}>
+                  <ArticleLink article={article} />
+                </li>
+              ))}
+            </ul>
+            <Link 
+              href="/articles"
+              className="mt-6 inline-flex items-center gap-2 font-mono text-xs text-zinc-500 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+              All articles
+            </Link>
+          </section>
         </div>
       </Container>
+
     </>
   )
 }
