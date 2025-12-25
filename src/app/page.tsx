@@ -4,6 +4,9 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
+
+// Force dynamic rendering to pick up Keystatic content changes
+export const dynamic = 'force-dynamic'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
