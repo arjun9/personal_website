@@ -11,14 +11,19 @@
       "order": 2
     },
     {
-      "label": "FOSS",
-      "href": "/projects",
+      "label": "Experience",
+      "href": "/experience",
       "order": 3
+    },
+    {
+      "label": "Projects",
+      "href": "/projects",
+      "order": 4
     },
     {
       "label": "Products",
       "href": "/products",
-      "order": 4
+      "order": 5
     }
   ]
 }
