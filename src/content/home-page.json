@@ -23,7 +23,8 @@
     {
       "company": "Hetu Labs",
       "title": "Co-Founder & CEO",
-      "url": "www.hetu-labs.com",
+      "impact": "$85K USD/year revenue",
+      "url": "https://hetu-labs.com",
       "logo": "/images/logos/workExperience/0/logo.png",
       "startDate": "2023",
       "endDate": "Present"
@@ -31,6 +32,7 @@
     {
       "company": "Urban Company",
       "title": "Lead Comms Platform",
+      "impact": "99.99% latency reduction",
       "url": "https://www.linkedin.com/company/urbancompany/mycompany/",
       "logo": "/images/logos/workExperience/1/logo.jpg",
       "startDate": "2022",
@@ -39,6 +41,7 @@
     {
       "company": "PayU Payments",
       "title": "Lead R&D Platform",
+      "impact": "500x TPS improvement",
       "url": "https://www.linkedin.com/company/payu/",
       "logo": "/images/logos/workExperience/2/logo.png",
       "startDate": "2016",

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -12,7 +11,7 @@ import {
 import { getHomePageContent, getProjectsPageContent } from '@/lib/keystatic'
 
 // Skills to display as badges
-const SKILLS = ['System Design', 'Startups', 'AI/ML', 'Rust', 'Ruby', 'Node.js', 'Next.js', 'AWS', 'K8s']
+const SKILLS = ['System Design', 'Distributed Systems', 'Rust', 'Node.js', 'AWS']
 
 function SkillBadge({ skill }: { skill: string }) {
   return (
@@ -85,22 +84,6 @@ function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function SocialLink({
-  icon: Icon,
-  label,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof Link> & {
-  icon: React.ComponentType<{ className?: string }>
-  label: string
-}) {
-  return (
-    <Link className="group flex items-center gap-3 rounded-full border border-zinc-200/80 bg-white/50 px-5 py-3 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-emerald-300 hover:bg-white hover:shadow-md hover:shadow-emerald-500/10 dark:border-zinc-700/80 dark:bg-zinc-800/50 dark:hover:border-emerald-500/50 dark:hover:bg-zinc-800 dark:hover:shadow-emerald-500/5" {...props}>
-      <Icon className="h-5 w-5 fill-zinc-600 transition-all duration-300 group-hover:fill-emerald-600 group-hover:scale-110 dark:fill-zinc-400 dark:group-hover:fill-emerald-400" />
-      <span className="text-sm font-medium text-zinc-700 transition-colors duration-300 group-hover:text-emerald-700 dark:text-zinc-300 dark:group-hover:text-emerald-400">{label}</span>
-    </Link>
-  )
-}
-
 interface HomePageContent {
   title: string | null;
   description: string | null;
@@ -117,6 +100,7 @@ interface HomePageContent {
   workExperience: readonly {
     readonly company: string | null;
     readonly title: string | null;
+    readonly impact?: string | null;
     readonly url: string | null;
     readonly logo: string | null;
     readonly startDate: string | null;
@@ -159,12 +143,20 @@ function WorkExperienceRole({ work }: { work: NonNullable<HomePageContent['workE
           <span aria-hidden="true">—</span>{' '}
           <time dateTime={endDate}>{endLabel}</time>
         </dd>
+        {work.impact && (
+          <>
+            <dt className="sr-only">Impact</dt>
+            <dd className="mt-1 w-full text-xs font-medium text-emerald-600 dark:text-emerald-400">
+              {work.impact}
+            </dd>
+          </>
+        )}
       </dl>
     </li>
   )
 }
 
-function Resume({ workExperience, resumeUrl }: { workExperience: HomePageContent['workExperience'], resumeUrl: string | null }) {
+function Resume({ workExperience }: { workExperience: HomePageContent['workExperience'] }) {
   return (
     <div className="rounded-2xl border border-zinc-100 bg-white/50 p-6 shadow-sm backdrop-blur-sm dark:border-zinc-700/40 dark:bg-zinc-800/30">
       <h2 className="flex items-center gap-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -178,12 +170,6 @@ function Resume({ workExperience, resumeUrl }: { workExperience: HomePageContent
           <WorkExperienceRole key={workIndex} work={work}/>
         ))}
       </ol>
-      <a href={resumeUrl || '#'} target='_blank'>
-        <Button variant="secondary" className="mt-6 w-full">
-          <span>Download CV</span>
-          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition-transform duration-300 group-hover:translate-y-0.5 dark:group-hover:stroke-zinc-50" />
-        </Button>
-      </a>
     </div>
   )
 }
@@ -194,11 +180,34 @@ interface ProjectItem {
   url: string | null
   linkLabel: string | null
   logo: string | null
+  features?: readonly string[] | null
+  pricing?: readonly { plan: string; price: string }[] | null
 }
 
 interface ProjectSection {
   name: string | null
   items: readonly ProjectItem[] | null
+}
+
+function RocketIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
 }
 
 function Projects({ sections }: { sections: readonly ProjectSection[] | null }) {
@@ -208,9 +217,9 @@ function Projects({ sections }: { sections: readonly ProjectSection[] | null }) 
     <div className="rounded-2xl border border-zinc-100 bg-white/50 p-6 shadow-sm backdrop-blur-sm dark:border-zinc-700/40 dark:bg-zinc-800/30">
       <h2 className="flex items-center gap-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-500/10">
-          <CodeIcon className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+          <RocketIcon className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         </span>
-        <span>Projects</span>
+        <span>Product</span>
       </h2>
       <div className="mt-6 space-y-3">
         {sections.map((section) => (
@@ -221,35 +230,68 @@ function Projects({ sections }: { sections: readonly ProjectSection[] | null }) 
                   <a
                     href={item.url || '#'}
                     target="_blank"
-                    className="group relative flex items-start gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
+                    className="group relative block rounded-xl p-4 transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
                   >
-                    {/* Logo with gradient border on hover */}
-                    <div className="relative flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-emerald-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-emerald-500/30">
-                      <Image
-                        src={item.logo || ''}
-                        alt=""
-                        width={40}
-                        height={40}
-                        className="transition-transform duration-300 group-hover:scale-105"
-                        unoptimized
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <p className="text-sm font-semibold text-zinc-900 transition-colors duration-300 group-hover:text-emerald-600 dark:text-zinc-100 dark:group-hover:text-emerald-400">
-                          {item.name}
-                        </p>
-                        <svg className="h-4 w-4 text-zinc-400 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5 dark:text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
+                    {/* Header with logo and name */}
+                    <div className="flex items-start gap-4">
+                      <div className="relative flex h-14 w-14 flex-none items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-emerald-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-emerald-500/30">
+                        <Image
+                          src={item.logo || ''}
+                          alt=""
+                          width={48}
+                          height={48}
+                          className="transition-transform duration-300 group-hover:scale-105"
+                          unoptimized
+                        />
                       </div>
-                      <p className="mt-1 text-sm leading-snug text-zinc-500 dark:text-zinc-400 line-clamp-2">
-                        {item.description}
-                      </p>
-                      <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
-                        <LinkIcon className="h-3 w-3" />
-                        <span>{item.linkLabel}</span>
-                      </p>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-base font-semibold text-zinc-900 transition-colors duration-300 group-hover:text-emerald-600 dark:text-zinc-100 dark:group-hover:text-emerald-400">
+                            {item.name}
+                          </p>
+                          <svg className="h-4 w-4 text-zinc-400 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5 dark:text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </div>
+                        <p className="mt-1 text-sm leading-snug text-zinc-500 dark:text-zinc-400">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Pricing badges */}
+                    {item.pricing && item.pricing.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {item.pricing.map((tier) => (
+                          <span
+                            key={tier.plan}
+                            className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-medium text-amber-700 dark:bg-amber-500/10 dark:text-amber-400"
+                          >
+                            <span>{tier.plan}</span>
+                            <span className="font-semibold">{tier.price}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Features list */}
+                    {item.features && item.features.length > 0 && (
+                      <div className="mt-4 space-y-1.5">
+                        {item.features.map((feature) => (
+                          <div key={feature} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+                            <svg className="h-4 w-4 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Link label */}
+                    <div className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+                      <LinkIcon className="h-3 w-3" />
+                      <span>{item.linkLabel}</span>
                     </div>
                   </a>
                 </li>
@@ -315,33 +357,36 @@ export default async function Home() {
             ))}
           </div>
 
-          {/* Social Links */}
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <SocialLink
+          {/* Social Links - Compact Icon Bar */}
+          <div className="mt-8 flex justify-center gap-5">
+            <a
               href="https://github.com/arjun9"
               target="_blank"
+              className="group rounded-full p-2 transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               aria-label="View GitHub profile"
-              icon={GitHubIcon}
-              label="GitHub"
-            />
-            <SocialLink
+            >
+              <GitHubIcon className="h-6 w-6 fill-zinc-500 transition-all duration-300 group-hover:fill-emerald-600 group-hover:scale-110 dark:fill-zinc-400 dark:group-hover:fill-emerald-400" />
+            </a>
+            <a
               href="https://linkedin.com/in/arjun-verma"
               target="_blank"
+              className="group rounded-full p-2 transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               aria-label="Connect on LinkedIn"
-              icon={LinkedInIcon}
-              label="LinkedIn"
-            />
-            <SocialLink
+            >
+              <LinkedInIcon className="h-6 w-6 fill-zinc-500 transition-all duration-300 group-hover:fill-emerald-600 group-hover:scale-110 dark:fill-zinc-400 dark:group-hover:fill-emerald-400" />
+            </a>
+            <a
               href="https://www.toptal.com/developers/resume/arjun-verma"
               target="_blank"
+              className="group rounded-full p-2 transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               aria-label="View Toptal profile"
-              icon={ToptalIcon}
-              label="Toptal Developer"
-            />
+            >
+              <ToptalIcon className="h-6 w-6 fill-zinc-500 transition-all duration-300 group-hover:fill-emerald-600 group-hover:scale-110 dark:fill-zinc-400 dark:group-hover:fill-emerald-400" />
+            </a>
           </div>
 
-          {/* CTA Button */}
-          <div className="mt-10">
+          {/* CTA Buttons */}
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button
               href="https://calendly.com/arjun-verma"
               target="_blank"
@@ -352,6 +397,15 @@ export default async function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Button>
+            <Button
+              href={homeContent.resumeUrl || '#'}
+              target="_blank"
+              variant="secondary"
+              className="px-8 py-3.5 text-base"
+            >
+              <span>Download CV</span>
+              <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition-transform duration-300 group-hover:translate-y-0.5 group-hover:stroke-zinc-600 dark:group-hover:stroke-zinc-300" />
+            </Button>
           </div>
         </div>
       </Container>
@@ -359,7 +413,7 @@ export default async function Home() {
       {/* Work and Projects Sections */}
       <Container className="mt-16 md:mt-20">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-x-16">
-          <Resume workExperience={homeContent.workExperience} resumeUrl={homeContent.resumeUrl} />
+          <Resume workExperience={homeContent.workExperience} />
           <Projects sections={projectsContent?.sections || null} />
         </div>
       </Container>

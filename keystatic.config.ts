@@ -184,6 +184,23 @@ export default config({
                   directory: 'public/images/logos',
                   publicPath: '/images/logos/',
                 }),
+                features: fields.array(
+                  fields.text({ label: 'Feature' }),
+                  {
+                    label: 'Features',
+                    description: 'Key product features to highlight'
+                  }
+                ),
+                pricing: fields.array(
+                  fields.object({
+                    plan: fields.text({ label: 'Plan Name' }),
+                    price: fields.text({ label: 'Price' }),
+                  }),
+                  {
+                    label: 'Pricing Tiers',
+                    itemLabel: props => props.fields.plan.value || 'Plan',
+                  }
+                ),
               }),
               {
                 label: 'Items',
@@ -255,6 +272,10 @@ export default config({
           fields.object({
             company: fields.text({ label: 'Company Name' }),
             title: fields.text({ label: 'Job Title' }),
+            impact: fields.text({ 
+              label: 'Impact Metric',
+              description: 'Brief achievement (e.g., "500x TPS improvement")'
+            }),
             url: fields.url({ label: 'Company URL' }),
             logo: fields.image({
               label: 'Company Logo',

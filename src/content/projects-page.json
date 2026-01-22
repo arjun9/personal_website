@@ -1,25 +1,23 @@
 {
-  "title": "Projects",
-  "subtitle": "Things I've built",
-  "description": "A collection of products I've created.",
-  "intro": "A collection of products I've created over the years.",
+  "title": "Product",
+  "subtitle": "What I'm building",
+  "description": "A SaaS product for India's garment manufacturing industry.",
+  "intro": "Building software that solves real problems.",
   "sections": [
     {
-      "name": "Products",
+      "name": "Product",
       "items": [
         {
-          "name": "Hetu Labs",
-          "description": "A technology company helping SMBs scale their revenue through customized software solutions.",
-          "url": "https://www.hetu-labs.com",
-          "linkLabel": "hetu-labs.com",
-          "logo": "/images/logos/products/0/logo.png"
-        },
-        {
-          "name": "SimpleChain SCM",
-          "description": "Supply chain task tracking and management software, customizable to suit any industry.",
-          "url": "https://www.hetu-labs.com",
-          "linkLabel": "simple-chain.com",
-          "logo": "/images/logos/products/1/logo.png"
+          "name": "Stream",
+          "description": "SaaS platform for garment manufacturing supply chain. Tracks orders from fabric to finished goods with workflow automation, fabricator portals, and smart inventory.",
+          "url": "https://stream.arjunverma.in",
+          "linkLabel": "stream.arjunverma.in",
+          "logo": "/images/logos/products/stream/logo.svg",
+          "features": ["Order Management", "Workflow Automation", "Fabricator Portal", "Smart Inventory"],
+          "pricing": [
+            { "plan": "Starter", "price": "$15/mo" },
+            { "plan": "Pro", "price": "$99/mo" }
+          ]
         }
       ]
     }
