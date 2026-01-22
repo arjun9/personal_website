@@ -16,7 +16,7 @@ const SKILLS = ['System Design', 'Startups', 'AI/ML', 'Rust', 'Ruby', 'Node.js',
 
 function SkillBadge({ skill }: { skill: string }) {
   return (
-    <span className="rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+    <span className="rounded-full bg-gradient-to-r from-zinc-100 to-zinc-50 px-4 py-1.5 text-sm font-medium text-zinc-700 shadow-sm ring-1 ring-zinc-200/50 transition-all duration-300 hover:shadow-md hover:ring-zinc-300 dark:from-zinc-800 dark:to-zinc-800/80 dark:text-zinc-300 dark:ring-zinc-700/50 dark:hover:ring-zinc-600">
       {skill}
     </span>
   )
@@ -41,7 +41,7 @@ function CodeIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
+        stroke="currentColor"
       />
     </svg>
   )
@@ -60,11 +60,13 @@ function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     >
       <path
         d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
+        fill="currentColor"
+        fillOpacity="0.1"
+        stroke="currentColor"
       />
       <path
         d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
+        stroke="currentColor"
       />
     </svg>
   )
@@ -92,9 +94,9 @@ function SocialLink({
   label: string
 }) {
   return (
-    <Link className="group flex items-center gap-2 rounded-lg border border-zinc-200 px-4 py-3 transition hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-700 transition group-hover:fill-zinc-900 dark:fill-zinc-300 dark:group-hover:fill-zinc-100" />
-      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{label}</span>
+    <Link className="group flex items-center gap-3 rounded-full border border-zinc-200/80 bg-white/50 px-5 py-3 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-emerald-300 hover:bg-white hover:shadow-md hover:shadow-emerald-500/10 dark:border-zinc-700/80 dark:bg-zinc-800/50 dark:hover:border-emerald-500/50 dark:hover:bg-zinc-800 dark:hover:shadow-emerald-500/5" {...props}>
+      <Icon className="h-5 w-5 fill-zinc-600 transition-all duration-300 group-hover:fill-emerald-600 group-hover:scale-110 dark:fill-zinc-400 dark:group-hover:fill-emerald-400" />
+      <span className="text-sm font-medium text-zinc-700 transition-colors duration-300 group-hover:text-emerald-700 dark:text-zinc-300 dark:group-hover:text-emerald-400">{label}</span>
     </Link>
   )
 }
@@ -130,22 +132,27 @@ function WorkExperienceRole({ work }: { work: NonNullable<HomePageContent['workE
   const endDate = work.endDate === 'Present' ? new Date().getFullYear().toString() : (work.endDate || '')
 
   return (
-    <li className="flex gap-4">
-      <div className="relative mt-1 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={work.logo || ''} alt="" width={48} height={48} unoptimized />
+    <li className="group relative flex gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
+      <div className="relative flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-amber-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-amber-500/30">
+        <Image src={work.logo || ''} alt="" width={40} height={40} className="transition-transform duration-300 group-hover:scale-105" unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          <a href={work.url || '#'} className='cursor-pointer' target='_blank'>{work.company}</a>
+        <dd className="w-full flex-none text-sm font-semibold text-zinc-900 transition-colors duration-300 group-hover:text-amber-700 dark:text-zinc-100 dark:group-hover:text-amber-400">
+          <a href={work.url || '#'} className='cursor-pointer inline-flex items-center gap-1' target='_blank'>
+            {work.company}
+            <svg className="h-3.5 w-3.5 text-zinc-400 opacity-0 transition-all duration-300 group-hover:opacity-100 dark:text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
         </dd>
         <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+        <dd className="text-sm text-zinc-600 dark:text-zinc-400">
           {work.title}
         </dd>
         <dt className="sr-only">Date</dt>
         <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+          className="ml-auto text-xs font-medium text-zinc-400 dark:text-zinc-500"
           aria-label={`${startLabel} until ${endLabel}`}
         >
           <time dateTime={work.startDate || ''}>{startLabel}</time>{' '}
@@ -159,20 +166,22 @@ function WorkExperienceRole({ work }: { work: NonNullable<HomePageContent['workE
 
 function Resume({ workExperience, resumeUrl }: { workExperience: HomePageContent['workExperience'], resumeUrl: string | null }) {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work</span>
+    <div className="rounded-2xl border border-zinc-100 bg-white/50 p-6 shadow-sm backdrop-blur-sm dark:border-zinc-700/40 dark:bg-zinc-800/30">
+      <h2 className="flex items-center gap-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-500/10">
+          <BriefcaseIcon className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+        </span>
+        <span>Work Experience</span>
       </h2>
-      <ol className="mt-6 space-y-4">
+      <ol className="mt-6 space-y-5">
         {workExperience?.map((work, workIndex) => (
           <WorkExperienceRole key={workIndex} work={work}/>
         ))}
       </ol>
       <a href={resumeUrl || '#'} target='_blank'>
-        <Button  variant="secondary" className="group mt-6 w-full">
-          Download CV
-          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <Button variant="secondary" className="mt-6 w-full">
+          <span>Download CV</span>
+          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition-transform duration-300 group-hover:translate-y-0.5 dark:group-hover:stroke-zinc-50" />
         </Button>
       </a>
     </div>
@@ -196,41 +205,50 @@ function Projects({ sections }: { sections: readonly ProjectSection[] | null }) 
   if (!sections) return null
 
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <CodeIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Projects</span>
+    <div className="rounded-2xl border border-zinc-100 bg-white/50 p-6 shadow-sm backdrop-blur-sm dark:border-zinc-700/40 dark:bg-zinc-800/30">
+      <h2 className="flex items-center gap-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-500/10">
+          <CodeIcon className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+        </span>
+        <span>Projects</span>
       </h2>
-      <div className="mt-6 space-y-8">
+      <div className="mt-6 space-y-3">
         {sections.map((section) => (
           <div key={section.name}>
-            <ul role="list" className="mt-3 space-y-4">
+            <ul role="list" className="space-y-3">
               {section.items?.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.url || '#'}
                     target="_blank"
-                    className="group flex items-start gap-3"
+                    className="group relative flex items-start gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
                   >
-                    <div className="relative flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                    {/* Logo with gradient border on hover */}
+                    <div className="relative flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-emerald-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-emerald-500/30">
                       <Image
                         src={item.logo || ''}
                         alt=""
                         width={40}
                         height={40}
+                        className="transition-transform duration-300 group-hover:scale-105"
                         unoptimized
                       />
                     </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-zinc-900 group-hover:text-green-600 dark:text-zinc-100 dark:group-hover:text-green-400">
-                        {item.name}
-                      </p>
-                      <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-semibold text-zinc-900 transition-colors duration-300 group-hover:text-emerald-600 dark:text-zinc-100 dark:group-hover:text-emerald-400">
+                          {item.name}
+                        </p>
+                        <svg className="h-4 w-4 text-zinc-400 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5 dark:text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </div>
+                      <p className="mt-1 text-sm leading-snug text-zinc-500 dark:text-zinc-400 line-clamp-2">
                         {item.description}
                       </p>
-                      <p className="mt-1 flex items-center text-xs text-zinc-400 dark:text-zinc-500">
-                        <LinkIcon className="h-3 w-3 flex-none" />
-                        <span className="ml-1">{item.linkLabel}</span>
+                      <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+                        <LinkIcon className="h-3 w-3" />
+                        <span>{item.linkLabel}</span>
                       </p>
                     </div>
                   </a>
@@ -257,37 +275,48 @@ export default async function Home() {
   return (
     <>
       {/* Hero Section */}
-      <Container className="mt-9">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-mono text-3xl font-bold tracking-tight text-zinc-100">
-            <span className="text-zinc-600 dark:text-zinc-400">Arjun Verma</span>
-            <span className="mx-3 text-zinc-400 dark:text-zinc-600">|</span>
-            <span className="text-emerald-600 dark:text-emerald-400">while</span>
-            <span className="text-zinc-400 dark:text-zinc-500">(</span>
-            <span className="text-amber-500 dark:text-amber-300">alive</span>
-            <span className="text-zinc-400 dark:text-zinc-500">)</span>
-            <span className="text-zinc-400 dark:text-zinc-500"> {'{'} </span>
-            <span className="text-sky-600 dark:text-sky-400">build</span>
-            <span className="text-zinc-400 dark:text-zinc-500">();</span>
-            <span className="text-zinc-400 dark:text-zinc-500"> {'}'}</span>
+      <Container className="mt-16 sm:mt-24">
+        <div className="relative mx-auto max-w-3xl text-center">
+          {/* Decorative gradient background */}
+          <div className="absolute -top-20 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5" />
+          
+          {/* Name */}
+          <p className="text-sm font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+            Hello, I&apos;m
+          </p>
+          
+          <h1 className="mt-4 text-5xl font-bold tracking-tight text-zinc-900 sm:text-6xl lg:text-7xl dark:text-zinc-100">
+            Arjun Verma
           </h1>
+          
+          {/* Code tagline */}
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-zinc-100/80 px-4 py-2 font-mono text-sm backdrop-blur-sm dark:bg-zinc-800/80">
+            <span className="text-emerald-600 dark:text-emerald-400">while</span>
+            <span className="text-zinc-400">(</span>
+            <span className="text-amber-500">alive</span>
+            <span className="text-zinc-400">)</span>
+            <span className="text-zinc-400">{'{'}</span>
+            <span className="text-sky-600 dark:text-sky-400">build</span>
+            <span className="text-zinc-400">( );</span>
+            <span className="text-zinc-400">{'}'}</span>
+          </div>
 
-          <p className="mt-6 text-lg text-zinc-600 dark:text-zinc-400">
-            <strong className="text-zinc-800 dark:text-zinc-200">Engineering leader</strong> with 10+ years building high-performance distributed systems. Led platform engineering at{' '}
-            <a href="https://payu.in" target="_blank" className="font-medium text-green-600 hover:text-green-700 dark:text-green-500 dark:hover:text-green-400">PayU</a>, redesigned communication infrastructure at{' '}
-            <a href="https://urbancompany.com" target="_blank" className="font-medium text-green-600 hover:text-green-700 dark:text-green-500 dark:hover:text-green-400">Urban Company</a>, and now run{' '}
-            <a href="https://hetu-labs.com" target="_blank" className="font-medium text-green-600 hover:text-green-700 dark:text-green-500 dark:hover:text-green-400">Hetu Labs</a> — a tech consultancy helping startups scale.
+          <p className="mt-8 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <strong className="font-semibold text-zinc-800 dark:text-zinc-200">Engineering leader</strong> with 10+ years building high-performance distributed systems. Led platform engineering at{' '}
+            <a href="https://payu.in" target="_blank" className="font-semibold text-emerald-600 underline decoration-emerald-600/30 underline-offset-2 transition hover:decoration-emerald-600 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:decoration-emerald-400">PayU</a>, redesigned communication infrastructure at{' '}
+            <a href="https://urbancompany.com" target="_blank" className="font-semibold text-emerald-600 underline decoration-emerald-600/30 underline-offset-2 transition hover:decoration-emerald-600 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:decoration-emerald-400">Urban Company</a>, and now run{' '}
+            <a href="https://hetu-labs.com" target="_blank" className="font-semibold text-emerald-600 underline decoration-emerald-600/30 underline-offset-2 transition hover:decoration-emerald-600 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:decoration-emerald-400">Hetu Labs</a> — a tech consultancy helping startups scale.
           </p>
 
           {/* Skills Badges */}
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
+          <div className="mt-10 flex flex-wrap justify-center gap-2.5">
             {SKILLS.map((skill) => (
               <SkillBadge key={skill} skill={skill} />
             ))}
           </div>
 
           {/* Social Links */}
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
             <SocialLink
               href="https://github.com/arjun9"
               target="_blank"
@@ -312,13 +341,16 @@ export default async function Home() {
           </div>
 
           {/* CTA Button */}
-          <div className="mt-8">
+          <div className="mt-10">
             <Button
               href="https://calendly.com/arjun-verma"
               target="_blank"
-              className="px-6 py-3"
+              className="px-8 py-3.5 text-base"
             >
-              Schedule a Call
+              <span>Schedule a Call</span>
+              <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Button>
           </div>
         </div>
