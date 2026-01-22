@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   title: {
     template: '%s - Arjun Verma',
     default:
-      'Arjun Verma - Building software that scales',
+      'Arjun Verma | Engineering leader with 10+ years building high-performance distributed systems.',
   },
   description:
-    'Software engineer and entrepreneur based in Gurgaon, India. Co-founder of Hetu Labs, building software solutions for SMBs.',
+    'Engineering leader with 10+ years building high-performance distributed systems. Led platform engineering at PayU, redesigned communication infrastructure at Urban Company, and now run Hetu Labs — a tech consultancy helping indian startups scale.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    title: 'Arjun Verma - Building software that scales',
-    description: 'Software engineer and entrepreneur based in Gurgaon, India. Co-founder of Hetu Labs, building software solutions for SMBs.',
+    title: 'Arjun Verma | Engineering leader with 10+ years building high-performance distributed systems.',
+    description: 'Engineering leader with 10+ years building high-performance distributed systems. Led platform engineering at PayU, redesigned communication infrastructure at Urban Company, and now run Hetu Labs — a tech consultancy helping indian startups scale.',
     siteName: 'Arjun Verma',
     images: [
       {
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arjun Verma - Building software that scales',
-    description: 'Software engineer and entrepreneur based in Gurgaon, India. Co-founder of Hetu Labs, building software solutions for SMBs.',
+    title: 'Arjun Verma | Engineering leader with 10+ years building high-performance distributed systems.',
+    description: 'Engineering leader with 10+ years building high-performance distributed systems. Led platform engineering at PayU, redesigned communication infrastructure at Urban Company, and now run Hetu Labs — a tech consultancy helping indian startups scale.',
     creator: '@arjunverma841',
     images: [`${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.jpeg`],
   },
