@@ -1,8 +1,8 @@
 {
   "title": "Projects",
   "subtitle": "Things I've built",
-  "description": "A collection of products and open source tools I've created.",
-  "intro": "A collection of products and open source tools I've created over the years.",
+  "description": "A collection of products I've created.",
+  "intro": "A collection of products I've created over the years.",
   "sections": [
     {
       "name": "Products",
@@ -20,39 +20,6 @@
           "url": "https://www.hetu-labs.com",
           "linkLabel": "simple-chain.com",
           "logo": "/images/logos/products/1/logo.png"
-        }
-      ]
-    },
-    {
-      "name": "Open Source",
-      "items": [
-        {
-          "name": "Cache Ninja",
-          "description": "A Ruby gem that simplifies association caching in Rails applications.",
-          "url": "https://github.com/arjun9/cache_ninja",
-          "linkLabel": "github.com",
-          "logo": "/images/logos/cache_ninja.png"
-        },
-        {
-          "name": "Ejabberd Client",
-          "description": "Ruby gem for communicating with Ejabberd XMPP servers over HTTP.",
-          "url": "https://github.com/arjun9/ejabberd_http_client",
-          "linkLabel": "github.com",
-          "logo": "/images/logos/ejabberd_client.png"
-        },
-        {
-          "name": "Simple Proxy",
-          "description": "A gem that handles CORS restrictions during development.",
-          "url": "https://github.com/Hetu-Labs/simple_proxy",
-          "linkLabel": "github.com",
-          "logo": "/images/logos/simple_proxy.png"
-        },
-        {
-          "name": "GPT: Paul Graham's Essays",
-          "description": "A custom GPT trained on Paul Graham's essays for interactive conversations.",
-          "url": "https://chat.openai.com/g/g-SwyIhlIms-paul-graham-s-essays",
-          "linkLabel": "chat.openai.com",
-          "logo": "/images/logos/custom_gpt.png"
         }
       ]
     }
