@@ -12,7 +12,7 @@
           "description": "SaaS platform for garment manufacturing supply chain. Tracks orders from fabric to finished goods with workflow automation, fabricator portals, and smart inventory.",
           "url": "https://stream.arjunverma.in",
           "linkLabel": "stream.arjunverma.in",
-          "logo": "/images/logos/products/stream/logo.svg",
+          "logo": "/images/logos/products/stream/logo.webp",
           "features": ["Order Management", "Workflow Automation", "Fabricator Portal", "Smart Inventory"],
           "pricing": [
             { "plan": "Starter", "price": "$15/mo" },

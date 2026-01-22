@@ -116,9 +116,9 @@ function WorkExperienceRole({ work }: { work: NonNullable<HomePageContent['workE
   const endDate = work.endDate === 'Present' ? new Date().getFullYear().toString() : (work.endDate || '')
 
   return (
-    <li className="group relative flex gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
-      <div className="relative flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-amber-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-amber-500/30">
-        <Image src={work.logo || ''} alt="" width={40} height={40} className="transition-transform duration-300 group-hover:scale-105" unoptimized />
+    <li className="group relative flex gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
+      <div className="relative flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-full bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-amber-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-amber-500/30">
+        <Image src={work.logo || ''} alt="" width={48} height={48} className="transition-transform duration-300 group-hover:scale-105" unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -221,7 +221,7 @@ function Projects({ sections }: { sections: readonly ProjectSection[] | null }) 
         </span>
         <span>Product</span>
       </h2>
-      <div className="mt-6 space-y-3">
+      <div className="mt-4 space-y-3">
         {sections.map((section) => (
           <div key={section.name}>
             <ul role="list" className="space-y-3">
@@ -234,12 +234,12 @@ function Projects({ sections }: { sections: readonly ProjectSection[] | null }) 
                   >
                     {/* Header with logo and name */}
                     <div className="flex items-start gap-4">
-                      <div className="relative flex h-14 w-14 flex-none items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-emerald-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-emerald-500/30">
+                      <div className="relative flex h-14 w-14 flex-none items-center justify-center overflow-hidden rounded-full bg-white shadow-sm ring-1 ring-zinc-900/5 transition-all duration-300 group-hover:shadow-md group-hover:ring-emerald-500/20 dark:bg-zinc-800 dark:ring-zinc-700/50 dark:group-hover:ring-emerald-500/30">
                         <Image
                           src={item.logo || ''}
                           alt=""
-                          width={48}
-                          height={48}
+                          width={56}
+                          height={56}
                           className="transition-transform duration-300 group-hover:scale-105"
                           unoptimized
                         />
