@@ -371,7 +371,7 @@ export default async function Home() {
               <GitHubIcon className="h-6 w-6 fill-zinc-500 transition-all duration-300 group-hover:fill-emerald-600 group-hover:scale-110 dark:fill-zinc-400 dark:group-hover:fill-emerald-400" />
             </a>
             <a
-              href="https://linkedin.com/in/arjun-verma"
+              href="https://www.linkedin.com/in/arjun-verma-895133103/"
               target="_blank"
               className="group rounded-full p-2 transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               aria-label="Connect on LinkedIn"

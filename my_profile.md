@@ -3,7 +3,7 @@
 **Co-founder & CTO | Full-Stack Architect | Systems Engineer**
 
 📧 arjun.verma8412@gmail.com | 📱 +91 9677455069  
-🌐 [arjunverma.in](https://www.arjunverma.in) | 💼 [LinkedIn](https://linkedin.com/in/arjun-verma) | 🐙 [GitHub @arjun9](https://github.com/arjun9) | 🤗 [Hugging Face @av1123](https://huggingface.co/av1123)  
+🌐 [arjunverma.in](https://www.arjunverma.in) | 💼 [LinkedIn](https://www.linkedin.com/in/arjun-verma-895133103/) | 🐙 [GitHub @arjun9](https://github.com/arjun9) | 🤗 [Hugging Face @av1123](https://huggingface.co/av1123)  
 ✍️ [Medium @arjun.verma8412](https://medium.com/@arjun.verma8412) | 🏢 [Toptal Profile](https://www.toptal.com/developers/resume/arjun-verma)  | [Goodreads Profile](https://www.goodreads.com/user/show/36080233-arjun-verma)
 
 ---
