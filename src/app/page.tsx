@@ -350,7 +350,7 @@ export default async function Home() {
             <strong className="font-semibold text-zinc-800 dark:text-zinc-200">Engineering leader</strong> with 10+ years building high-performance distributed systems. Led platform engineering at{' '}
             <a href="https://payu.in" target="_blank" className="font-semibold text-emerald-600 underline decoration-emerald-600/30 underline-offset-2 transition hover:decoration-emerald-600 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:decoration-emerald-400">PayU</a>, redesigned communication infrastructure at{' '}
             <a href="https://urbancompany.com" target="_blank" className="font-semibold text-emerald-600 underline decoration-emerald-600/30 underline-offset-2 transition hover:decoration-emerald-600 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:decoration-emerald-400">Urban Company</a>, and now run{' '}
-            <a href="https://hetu-labs.com" target="_blank" className="font-semibold text-emerald-600 underline decoration-emerald-600/30 underline-offset-2 transition hover:decoration-emerald-600 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:decoration-emerald-400">Hetu Labs</a> — a tech consultancy helping startups scale.
+            <a href="https://hetu-labs.com" target="_blank" className="font-semibold text-emerald-600 underline decoration-emerald-600/30 underline-offset-2 transition hover:decoration-emerald-600 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:decoration-emerald-400">Hetu Labs</a> — a tech consultancy helping indian startups scale.
           </p>
 
           {/* Skills Badges */}
@@ -391,7 +391,7 @@ export default async function Home() {
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button
-              href="https://calendly.com/arjun-verma"
+              href="https://calendly.com/arjun-verma-qyy/hey"
               target="_blank"
               className="px-8 py-3.5 text-base"
             >
@@ -406,7 +406,7 @@ export default async function Home() {
               variant="secondary"
               className="px-8 py-3.5 text-base"
             >
-              <span>Resume</span>
+              <span>Download CV</span>
               <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition-transform duration-300 group-hover:translate-y-0.5 group-hover:stroke-zinc-600 dark:group-hover:stroke-zinc-300" />
             </Button>
           </div>
