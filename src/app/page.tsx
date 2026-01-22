@@ -259,7 +259,7 @@ export default async function Home() {
       {/* Hero Section */}
       <Container className="mt-9">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-mono text-2xl tracking-tight text-zinc-100">
+          <h1 className="font-mono text-3xl font-bold tracking-tight text-zinc-100">
             <span className="text-zinc-600 dark:text-zinc-400">Arjun Verma</span>
             <span className="mx-3 text-zinc-400 dark:text-zinc-600">|</span>
             <span className="text-emerald-600 dark:text-emerald-400">while</span>
