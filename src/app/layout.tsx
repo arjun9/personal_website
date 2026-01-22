@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import { Suspense } from 'react'
+import { Inter } from 'next/font/google'
 
 import { Providers } from '@/app/providers'
 import { LayoutWrapper } from '@/components/LayoutWrapper'
@@ -7,14 +8,16 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 import '@/styles/tailwind.css'
 
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata: Metadata = {
   title: {
     template: '%s - Arjun Verma',
     default:
-      'Arjun Verma - Software engineer, founder, and amateur philosopher',
+      'Arjun Verma - Building software that scales',
   },
   description:
-    'I\'m Arjun, a software engineer and entrepreneur based in Gurgaon, India. I\'m the founder and CTO of Hetu Labs, where we develop technologies that empower SMBs to grow their business online.',
+    'Software engineer and entrepreneur based in Gurgaon, India. Co-founder of Hetu Labs, building software solutions for SMBs.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
@@ -28,8 +31,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    title: 'Arjun Verma - Software engineer, founder, and amateur philosopher',
-    description: 'I\'m Arjun, a software engineer and entrepreneur based in Gurgaon, India. I\'m the founder and CTO of Hetu Labs, where we develop technologies that empower SMBs to grow their business online.',
+    title: 'Arjun Verma - Building software that scales',
+    description: 'Software engineer and entrepreneur based in Gurgaon, India. Co-founder of Hetu Labs, building software solutions for SMBs.',
     siteName: 'Arjun Verma',
     images: [
       {
@@ -42,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arjun Verma - Software engineer, founder, and amateur philosopher',
-    description: 'I\'m Arjun, a software engineer and entrepreneur based in Gurgaon, India. I\'m the founder and CTO of Hetu Labs, where we develop technologies that empower SMBs to grow their business online.',
+    title: 'Arjun Verma - Building software that scales',
+    description: 'Software engineer and entrepreneur based in Gurgaon, India. Co-founder of Hetu Labs, building software solutions for SMBs.',
     creator: '@arjunverma841',
     images: [`${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.jpeg`],
   },
@@ -67,7 +70,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body>
+      <body className={inter.className}>
         <Suspense fallback={null}>
           <GoogleAnalytics 
             GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}

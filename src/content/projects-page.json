@@ -1,36 +1,60 @@
 {
   "title": "Projects",
-  "subtitle": "Things I've made trying to give back to the community.",
-  "description": "Things I've made trying to give back to the community.",
-  "intro": "I've worked on numerous small projects over the years, but only recently have I made some of them open source. If something piques your interest, feel free to check out the code and contribute your ideas for improvements.",
-  "projects": [
+  "subtitle": "Things I've built",
+  "description": "A collection of products and open source tools I've created.",
+  "intro": "A collection of products and open source tools I've created over the years.",
+  "sections": [
     {
-      "name": "Cache Ninja",
-      "description": "In Ruby on Rails, association caching is tricky, but Cache Ninja turns it into a powerful tool, enabling users to redefine their experience.",
-      "url": "https://github.com/arjun9/cache_ninja",
-      "linkLabel": "github.com",
-      "logo": "/images/logos/cache_ninja.png"
+      "name": "Products",
+      "items": [
+        {
+          "name": "Hetu Labs",
+          "description": "A technology company helping SMBs scale their revenue through customized software solutions.",
+          "url": "https://www.hetu-labs.com",
+          "linkLabel": "hetu-labs.com",
+          "logo": "/images/logos/products/0/logo.png"
+        },
+        {
+          "name": "SimpleChain SCM",
+          "description": "Supply chain task tracking and management software, customizable to suit any industry.",
+          "url": "https://www.hetu-labs.com",
+          "linkLabel": "simple-chain.com",
+          "logo": "/images/logos/products/1/logo.png"
+        }
+      ]
     },
     {
-      "name": "Ejabberd Client",
-      "description": "The Ejabberd HTTP Client gem streamlines Ruby-based communication with Ejabberd XMPP servers, making it easier and more efficient",
-      "url": "https://github.com/arjun9/ejabberd_http_client",
-      "linkLabel": "github.com",
-      "logo": "/images/logos/ejabberd_client.png"
-    },
-    {
-      "name": "Simple Proxy",
-      "description": "This gem boosts developer productivity by tackling CORS restrictions, smoothing out the software development lifecycle, and speeding up processes for greater efficiency.",
-      "url": "https://github.com/Hetu-Labs/simple_proxy",
-      "linkLabel": "github.com",
-      "logo": "/images/logos/simple_proxy.png"
-    },
-    {
-      "name": "GPT: Paul Graham's Essays",
-      "description": "This is a custom-gpt model trained on Paul Graham's essays. It's a fun way to interact with his essays and get a glimpse into the mind of a great thinker.",
-      "url": "https://chat.openai.com/g/g-SwyIhlIms-paul-graham-s-essays",
-      "linkLabel": "chat.openai.com",
-      "logo": "/images/logos/custom_gpt.png"
+      "name": "Open Source",
+      "items": [
+        {
+          "name": "Cache Ninja",
+          "description": "A Ruby gem that simplifies association caching in Rails applications.",
+          "url": "https://github.com/arjun9/cache_ninja",
+          "linkLabel": "github.com",
+          "logo": "/images/logos/cache_ninja.png"
+        },
+        {
+          "name": "Ejabberd Client",
+          "description": "Ruby gem for communicating with Ejabberd XMPP servers over HTTP.",
+          "url": "https://github.com/arjun9/ejabberd_http_client",
+          "linkLabel": "github.com",
+          "logo": "/images/logos/ejabberd_client.png"
+        },
+        {
+          "name": "Simple Proxy",
+          "description": "A gem that handles CORS restrictions during development.",
+          "url": "https://github.com/Hetu-Labs/simple_proxy",
+          "linkLabel": "github.com",
+          "logo": "/images/logos/simple_proxy.png"
+        },
+        {
+          "name": "GPT: Paul Graham's Essays",
+          "description": "A custom GPT trained on Paul Graham's essays for interactive conversations.",
+          "url": "https://chat.openai.com/g/g-SwyIhlIms-paul-graham-s-essays",
+          "linkLabel": "chat.openai.com",
+          "logo": "/images/logos/custom_gpt.png"
+        }
+      ]
     }
   ]
 }

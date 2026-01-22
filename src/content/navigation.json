@@ -11,14 +11,9 @@
       "order": 2
     },
     {
-      "label": "FOSS",
+      "label": "Projects",
       "href": "/projects",
       "order": 3
-    },
-    {
-      "label": "Products",
-      "href": "/products",
-      "order": 4
     }
   ]
 }

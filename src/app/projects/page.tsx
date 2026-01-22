@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   
   return {
     title: pageContent?.title || 'Projects',
-    description: pageContent?.description || 'Things I\'ve made trying to give back to the community.',
+    description: pageContent?.description || "Things I've built",
   }
 }
 
@@ -37,32 +37,45 @@ export default async function Projects() {
       title={pageContent.subtitle}
       intro={pageContent.intro}
     >
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {pageContent.projects?.map((project) => (
-          <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-32 w-32 overflow-hidden items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image
-                src={project.logo || ''}
-                alt=""
-                width={128}
-                height={128}
-                unoptimized
-              />
-            </div>
-            <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.url}>{project.name}</Card.Link>
+      <div className="space-y-16">
+        {pageContent.sections?.map((section) => (
+          <section key={section.name}>
+            <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+              {section.name}
             </h2>
-            <Card.Description>{project.description}</Card.Description>
-            <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-green-500 dark:text-zinc-200">
-              <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.linkLabel}</span>
-            </p>
-          </Card>
+            <ul
+              role="list"
+              className="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2"
+            >
+              {section.items?.map((item) => (
+                <Card as="li" key={item.name}>
+                  <div className="flex items-center gap-4">
+                    <div className="relative z-10 flex h-12 w-12 flex-none overflow-hidden items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                      <Image
+                        src={item.logo || ''}
+                        alt=""
+                        width={48}
+                        height={48}
+                        unoptimized
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+                        <Card.Link href={item.url}>{item.name}</Card.Link>
+                      </h3>
+                      <p className="relative z-10 flex text-xs text-zinc-400 dark:text-zinc-500">
+                        <LinkIcon className="h-4 w-4 flex-none" />
+                        <span className="ml-1">{item.linkLabel}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <Card.Description className="mt-4">{item.description}</Card.Description>
+                </Card>
+              ))}
+            </ul>
+          </section>
         ))}
-      </ul>
+      </div>
     </SimpleLayout>
   )
 }

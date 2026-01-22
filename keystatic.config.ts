@@ -138,57 +138,6 @@ export default config({
         }),
       },
     }),
-    productsPage: singleton({
-      label: 'Products Page',
-      path: 'src/content/products-page',
-      format: { data: 'json' },
-      schema: {
-        title: fields.text({ 
-          label: 'Page Title', 
-          defaultValue: 'Products' 
-        }),
-        subtitle: fields.text({ 
-          label: 'Subtitle',
-          defaultValue: "Things I've made trying to put my dent in the universe."
-        }),
-        description: fields.text({ 
-          label: 'Meta Description',
-          multiline: true,
-          defaultValue: "Things I've made trying to put my dent in the universe."
-        }),
-        intro: fields.text({ 
-          label: 'Introduction Text',
-          multiline: true,
-          defaultValue: "I've loved making things for as long as I can remember, and I've been lucky enough to be able to make a living doing it. Here are some of the companies/products I've created over the years"
-        }),
-        products: fields.array(
-          fields.object({
-            name: fields.text({ label: 'Product Name' }),
-            description: fields.text({ 
-              label: 'Description', 
-              multiline: true 
-            }),
-            url: fields.url({ 
-              label: 'Product URL',
-              validation: { isRequired: true }
-            }),
-            linkLabel: fields.text({ 
-              label: 'Link Label',
-              defaultValue: 'Visit Site'
-            }),
-            logo: fields.image({
-              label: 'Logo',
-              directory: 'public/images/logos',
-              publicPath: '/images/logos/',
-            }),
-          }),
-          {
-            label: 'Products',
-            itemLabel: props => props.fields.name.value || 'Product',
-          }
-        ),
-      },
-    }),
     projectsPage: singleton({
       label: 'Projects Page',
       path: 'src/content/projects-page',
@@ -200,42 +149,51 @@ export default config({
         }),
         subtitle: fields.text({ 
           label: 'Subtitle',
-          defaultValue: "Things I've made trying to give back to the community."
+          defaultValue: "Things I've built"
         }),
         description: fields.text({ 
           label: 'Meta Description',
           multiline: true,
-          defaultValue: "Things I've made trying to give back to the community."
+          defaultValue: "A collection of products and open source tools I've created."
         }),
         intro: fields.text({ 
           label: 'Introduction Text',
           multiline: true,
-          defaultValue: "I've worked on numerous small projects over the years, but only recently have I made some of them open source. If something piques your interest, feel free to check out the code and contribute your ideas for improvements."
+          defaultValue: "A collection of products and open source tools I've created over the years."
         }),
-        projects: fields.array(
+        sections: fields.array(
           fields.object({
-            name: fields.text({ label: 'Project Name' }),
-            description: fields.text({ 
-              label: 'Description', 
-              multiline: true 
-            }),
-            url: fields.url({ 
-              label: 'Project URL',
-              validation: { isRequired: true }
-            }),
-            linkLabel: fields.text({ 
-              label: 'Link Label',
-              defaultValue: 'github.com'
-            }),
-            logo: fields.image({
-              label: 'Logo',
-              directory: 'public/images/logos',
-              publicPath: '/images/logos/',
-            }),
+            name: fields.text({ label: 'Section Name' }),
+            items: fields.array(
+              fields.object({
+                name: fields.text({ label: 'Project Name' }),
+                description: fields.text({ 
+                  label: 'Description', 
+                  multiline: true 
+                }),
+                url: fields.url({ 
+                  label: 'Project URL',
+                  validation: { isRequired: true }
+                }),
+                linkLabel: fields.text({ 
+                  label: 'Link Label',
+                  defaultValue: 'github.com'
+                }),
+                logo: fields.image({
+                  label: 'Logo',
+                  directory: 'public/images/logos',
+                  publicPath: '/images/logos/',
+                }),
+              }),
+              {
+                label: 'Items',
+                itemLabel: props => props.fields.name.value || 'Item',
+              }
+            ),
           }),
           {
-            label: 'Projects',
-            itemLabel: props => props.fields.name.value || 'Project',
+            label: 'Sections',
+            itemLabel: props => props.fields.name.value || 'Section',
           }
         ),
       },
