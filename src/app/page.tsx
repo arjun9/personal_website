@@ -11,7 +11,7 @@ import {
 import { getHomePageContent, getProjectsPageContent } from '@/lib/keystatic'
 
 // Skills to display as badges
-const SKILLS = ['System Design', 'Distributed Systems', 'Rust', 'Node.js', 'AWS']
+const SKILLS = ['AI/ML', 'Distributed Systems',  'Ruby', 'Rust', 'AWS']
 
 function SkillBadge({ skill }: { skill: string }) {
   return (
@@ -334,13 +334,13 @@ export default async function Home() {
           {/* Code tagline */}
           <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-zinc-100/80 px-4 py-2 font-mono text-sm backdrop-blur-sm dark:bg-zinc-800/80">
             <span className="text-emerald-600 dark:text-emerald-400">while</span>
-            <span className="text-zinc-400">(</span>
+            <p><span className="text-zinc-400">(</span>
             <span className="text-amber-500">alive</span>
             <span className="text-zinc-400">)</span>
-            <span className="text-zinc-400">{'{'}</span>
+            <span className="text-zinc-400">{' { '}</span>
             <span className="text-sky-600 dark:text-sky-400">build</span>
-            <span className="text-zinc-400">( );</span>
-            <span className="text-zinc-400">{'}'}</span>
+            <span className="text-zinc-400">(<span className="text-red-600 dark:text-sky-400">software</span>);</span>
+            <span className="text-zinc-400">{' } '}</span></p>
           </div>
 
           <p className="mt-8 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
