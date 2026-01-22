@@ -4,7 +4,10 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
+  GoodreadsIcon,
+  HuggingFaceIcon,
   LinkedInIcon,
+  MediumIcon,
   ToptalIcon,
 } from '@/components/SocialIcons'
 // These are now loaded from Keystatic content
@@ -358,7 +361,7 @@ export default async function Home() {
           </div>
 
           {/* Social Links - Compact Icon Bar */}
-          <div className="mt-8 flex justify-center gap-5">
+          <div className="mt-8 flex flex-wrap justify-center gap-5">
             <a
               href="https://github.com/arjun9"
               target="_blank"
@@ -403,7 +406,7 @@ export default async function Home() {
               variant="secondary"
               className="px-8 py-3.5 text-base"
             >
-              <span>Download CV</span>
+              <span>Resume</span>
               <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition-transform duration-300 group-hover:translate-y-0.5 group-hover:stroke-zinc-600 dark:group-hover:stroke-zinc-300" />
             </Button>
           </div>
