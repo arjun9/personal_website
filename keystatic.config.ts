@@ -6,54 +6,7 @@ export default config({
     kind: 'github',
     repo: 'arjun9/personal_website'
   },
-  collections: {
-    articles: collection({
-      label: 'Articles',
-      slugField: 'title',
-      path: 'src/content/articles/*',
-      format: { contentField: 'content' },
-      schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ 
-          label: 'Description', 
-          multiline: true 
-        }),
-        author: fields.text({ 
-          label: 'Author', 
-          defaultValue: 'Arjun Verma' 
-        }),
-        date: fields.date({ 
-          label: 'Date', 
-          defaultValue: { kind: 'today' },
-          validation: { isRequired: true }
-        }),
-        image: fields.image({
-          label: 'Featured Image',
-          directory: 'public/images/articles',
-          publicPath: '/images/articles/',
-        }),
-        twitterCard: fields.select({
-          label: 'Twitter Card Type',
-          options: [
-            { label: 'Summary', value: 'summary' },
-            { label: 'Summary Large Image', value: 'summary_large_image' },
-            { label: 'App Card', value: 'app' },
-            { label: 'Player Card', value: 'player' },
-          ],
-          defaultValue: 'summary_large_image',
-        }),
-        content: fields.markdoc({ 
-          label: 'Content',
-          options: {
-            image: {
-              directory: 'public/images/articles',
-              publicPath: '/images/articles/',
-            },
-          },
-        }),
-      },
-    }),
-  },
+  collections: {},
   singletons: {
     about: singleton({
       label: 'About Page',
@@ -111,31 +64,6 @@ export default config({
             itemLabel: props => props.fields.platform.value || 'Social Link',
           }
         ),
-      },
-    }),
-    articlesPage: singleton({
-      label: 'Articles Page',
-      path: 'src/content/articles-page',
-      format: { data: 'json' },
-      schema: {
-        title: fields.text({ 
-          label: 'Page Title', 
-          defaultValue: 'Articles' 
-        }),
-        subtitle: fields.text({ 
-          label: 'Subtitle',
-          defaultValue: 'Writing on software engineering, company building & philosophy'
-        }),
-        description: fields.text({ 
-          label: 'Meta Description',
-          multiline: true,
-          defaultValue: 'All of my long-form thoughts on programming, leadership, product design and more, collected in chronological order.'
-        }),
-        intro: fields.text({ 
-          label: 'Introduction Text',
-          multiline: true,
-          defaultValue: 'All of my long-form thoughts on programming, leadership, product design and more, collected in chronological order.'
-        }),
       },
     }),
     projectsPage: singleton({

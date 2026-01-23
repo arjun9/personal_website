@@ -18,11 +18,6 @@ export const metadata: Metadata = {
   },
   description:
     'Engineering leader with 10+ years building high-performance distributed systems. Led platform engineering at PayU, redesigned communication infrastructure at Urban Company, and now run Hetu Labs — a tech consultancy helping indian startups scale.',
-  alternates: {
-    types: {
-      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
-    },
-  },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },

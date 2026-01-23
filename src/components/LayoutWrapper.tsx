@@ -39,13 +39,8 @@ export async function LayoutWrapper({ children }: LayoutWrapperProps) {
     }
   } catch (error) {
     console.warn('Failed to load content data, using defaults:', error)
-    // Fallback to default navigation
-    navigation = [
-      { label: 'About', href: '/about', order: 1 },
-      { label: 'Articles', href: '/articles', order: 2 },
-      { label: 'FOSS', href: '/projects', order: 3 },
-      { label: 'Products', href: '/products', order: 4 },
-    ]
+    // Fallback to empty navigation (single page site)
+    navigation = []
   }
 
   return <ConditionalLayout navigation={navigation} avatarImage={avatarImage}>{children}</ConditionalLayout>
