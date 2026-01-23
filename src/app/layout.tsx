@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: 'Arjun Verma',
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.jpeg`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.png`,
         width: 1200,
         height: 630,
         alt: 'Arjun Verma',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: 'Arjun Verma | Engineering leader with 10+ years building high-performance distributed systems.',
     description: 'Engineering leader with 10+ years building high-performance distributed systems. Led platform engineering at PayU, redesigned communication infrastructure at Urban Company, and now run Hetu Labs — a tech consultancy helping indian startups scale.',
     creator: '@arjunverma841',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.jpeg`],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/images/portrait.png`],
   },
   robots: {
     index: true,

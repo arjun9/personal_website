@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   const articleUrl = `${siteUrl}/articles/${params.slug}`
-  const imageUrl = article.image ? `${siteUrl}${article.image}` : `${siteUrl}/images/portrait.jpeg`
+  const imageUrl = article.image ? `${siteUrl}${article.image}` : `${siteUrl}/images/portrait.png`
 
   return {
     title: article.title,
