@@ -462,10 +462,6 @@ export function Header({
                 )}
               </div>
               <div className="flex flex-1 justify-end md:justify-center">
-                <MobileNavigation 
-                  navigation={navigation}
-                  className="pointer-events-auto md:hidden" 
-                />
                 <DesktopNavigation 
                   navigation={navigation}
                   className="pointer-events-auto hidden md:block" 

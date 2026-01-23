@@ -14,7 +14,7 @@ import {
 import { getHomePageContent, getProjectsPageContent } from '@/lib/keystatic'
 
 // Skills to display as badges
-const SKILLS = ['AI/ML', 'Distributed Systems',  'Ruby', 'Rust', 'AWS']
+const SKILLS = ['AI/ML', 'Distributed Systems',  'Ruby', 'Rust', 'AWS', 'Docker/K8s']
 
 function SkillBadge({ skill }: { skill: string }) {
   return (
