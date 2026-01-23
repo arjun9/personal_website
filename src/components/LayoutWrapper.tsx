@@ -13,7 +13,7 @@ interface LayoutWrapperProps {
 
 export async function LayoutWrapper({ children }: LayoutWrapperProps) {
   let navigation: NavigationItem[] = []
-  let avatarImage = '/images/avatar.png' // Default fallback
+  let avatarImage = '/images/avatarImage.png' // Default fallback
   
   try {
     const [navigationData, siteSettings] = await Promise.all([
