@@ -249,10 +249,12 @@ function Avatar({
   large = false,
   className,
   avatarImage,
+  showRing = false,
   ...props
 }: Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> & {
   large?: boolean
   avatarImage: string
+  showRing?: boolean
 }) {
   return (
     <Link
@@ -270,6 +272,7 @@ function Avatar({
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-11 w-11',
+          showRing && 'ring-4 ring-green-500 dark:ring-green-400',
         )}
         priority
       />
@@ -429,6 +432,7 @@ export function Header({
                   />
                   <Avatar
                     large
+                    showRing
                     avatarImage={avatarImage}
                     className="block h-16 w-16 origin-left"
                     style={{ transform: 'var(--avatar-image-transform)' }}
