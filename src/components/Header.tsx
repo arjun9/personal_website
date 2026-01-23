@@ -238,7 +238,7 @@ function AvatarContainer({
     <div
       className={clsx(
         className,
-        'h-12 w-12 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-4 ring-green-500 backdrop-blur dark:bg-zinc-800/90 dark:ring-green-400',
+        'h-12 w-12 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 backdrop-blur dark:bg-zinc-800/90',
       )}
       {...props}
     />
@@ -272,7 +272,7 @@ function Avatar({
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-11 w-11',
-          showRing && 'ring-4 ring-green-500 dark:ring-green-400',
+          showRing && 'p-0.5 ring-2 ring-emerald-600 dark:ring-emerald-400',
         )}
         priority
       />

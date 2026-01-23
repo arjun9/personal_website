@@ -323,7 +323,7 @@ export default async function Home() {
       <Container className="mt-16 sm:mt-24">
         <div className="relative mx-auto max-w-3xl text-center">
           {/* Decorative gradient background */}
-          <div className="absolute -top-20 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5" />
+          <div className="pointer-events-none absolute -top-20 left-1/2 z-0 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5" />
           
           {/* Name */}
           <p className="text-sm font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
@@ -387,7 +387,7 @@ export default async function Home() {
               <ToptalIcon className="h-6 w-6 fill-zinc-500 transition-all duration-300 group-hover:fill-emerald-600 group-hover:scale-110 dark:fill-zinc-400 dark:group-hover:fill-emerald-400" />
             </a>
             <a
-              href="https://medium.com/@arjunverma"
+              href="https://medium.com/@arjun.verma8412"
               target="_blank"
               className="group rounded-full p-2 transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               aria-label="Read on Medium"
