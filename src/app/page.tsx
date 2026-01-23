@@ -323,8 +323,8 @@ export default async function Home() {
       <Container className="mt-16 sm:mt-24">
         <div className="relative mx-auto max-w-3xl text-center">
           {/* Decorative gradient background */}
-          <div className="pointer-events-none absolute -top-20 left-1/2 z-0 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5" />
-          
+          {/* <div className="pointer-events-none absolute -top-20 left-1/2 z-0 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5" />
+           */}
           {/* Name */}
           <p className="text-sm font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
             Hello, I&apos;m
